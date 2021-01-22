@@ -14,12 +14,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.grandi.lorenzo.gymtracker.FlagList;
-import com.grandi.lorenzo.gymtracker.home.HomeHandler;
+import com.grandi.lorenzo.gymtracker.home.HomeActivity;
 import com.grandi.lorenzo.gymtracker.R;
 
 import static com.grandi.lorenzo.gymtracker.KeyLoader.*;
@@ -54,7 +52,7 @@ public class FragmentLogin extends Fragment {
                     Toast.makeText(this.context, this.FILL_FORM_MESSAGE, Toast.LENGTH_SHORT).show();
                 } else {
                     this.preferenceSaver(activity);
-                    Intent intent = new Intent(this.context, HomeHandler.class);
+                    Intent intent = new Intent(this.context, HomeActivity.class);
                     new FlagList(intent);
                     startActivity(intent);
                 }

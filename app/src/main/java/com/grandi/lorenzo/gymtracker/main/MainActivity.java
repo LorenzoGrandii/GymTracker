@@ -16,7 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.grandi.lorenzo.gymtracker.FlagList;
-import com.grandi.lorenzo.gymtracker.home.HomeHandler;
+import com.grandi.lorenzo.gymtracker.home.HomeActivity;
 import com.grandi.lorenzo.gymtracker.R;
 import com.grandi.lorenzo.gymtracker.login.LoginHandler;
 
@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         initViewComponents(this);
 
         if (preferenceLoader(this)) {
-            Intent intent = new Intent(this, HomeHandler.class);
+            Intent intent = new Intent(this, HomeActivity.class);
             new FlagList(intent);
             startActivity(intent);
         } else {

@@ -18,7 +18,7 @@ import androidx.fragment.app.FragmentActivity;
 import com.google.android.material.textfield.TextInputLayout;
 import com.grandi.lorenzo.gymtracker.FlagList;
 import com.grandi.lorenzo.gymtracker.R;
-import com.grandi.lorenzo.gymtracker.home.HomeHandler;
+import com.grandi.lorenzo.gymtracker.home.HomeActivity;
 
 import static com.grandi.lorenzo.gymtracker.KeyLoader.LOGIN_PREFERENCE_FILE;
 import static com.grandi.lorenzo.gymtracker.KeyLoader.emailKey;
@@ -54,7 +54,7 @@ public class FragmentNewAccount extends Fragment {
                     Toast.makeText(this.context, this.FILL_FORM_MESSAGE, Toast.LENGTH_SHORT).show();
                 } else {
                     preferenceSaver(activity);
-                    Intent intent = new Intent(this.context, HomeHandler.class);
+                    Intent intent = new Intent(this.context, HomeActivity.class);
                     new FlagList(intent);
                     startActivity(intent);
                 }

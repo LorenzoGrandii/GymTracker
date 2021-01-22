@@ -14,7 +14,7 @@
         android:theme="@style/Theme.GymTracker">
         <activity android:name=".scanner.ScannerActivity" android:theme="@style/Theme.GymTracker.task"/>
         <activity android:name=".taskactivity.TaskActivityHandler" android:theme="@style/Theme.GymTracker.task"/>
-        <activity android:name=".home.HomeHandler" android:theme="@style/Theme.GymTracker.home"/>
+        <activity android:name=".home.HomeActivity" android:theme="@style/Theme.GymTracker.home"/>
         <activity android:name=".login.LoginHandler"/>
         <activity android:name=".main.MainActivity" android:theme="@style/Theme.GymTracker.home">
             <intent-filter>

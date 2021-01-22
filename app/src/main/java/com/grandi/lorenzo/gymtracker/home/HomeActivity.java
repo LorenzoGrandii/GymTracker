@@ -3,10 +3,12 @@ package com.grandi.lorenzo.gymtracker.home;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.fragment.app.FragmentActivity;
 
@@ -18,16 +20,18 @@ import com.grandi.lorenzo.gymtracker.task.CalendarHandler;
 
 import static com.grandi.lorenzo.gymtracker.KeyLoader.*;
 
-public class HomeHandler extends FragmentActivity {
+public class HomeActivity extends FragmentActivity {
 
     private TextView tv_date, tv_name, tv_account_id;
-    AppCompatImageButton acib_profile, acib_scanner, acib_settings, acib_training;
+    private AppCompatImageButton acib_profile, acib_scanner, acib_settings, acib_training;
     private String name, account_id;
+    private boolean training;
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home_handler);
+        setContentView(R.layout.activity_home);
 
         preferenceLoader(this);
         initViewComponents(this);
@@ -45,7 +49,6 @@ public class HomeHandler extends FragmentActivity {
         this.acib_scanner.setOnClickListener(v -> {
             preferenceSaver(this);
             this.acib_scanner.setPressed(true);
-
             Intent intent = new Intent(this, ScannerActivity.class);
             new FlagList(intent);
             startActivity(intent);
@@ -77,13 +80,14 @@ public class HomeHandler extends FragmentActivity {
 
     private void preferenceLoader(Activity activity) {
         SharedPreferences sharedPreferences;
-        sharedPreferences = (SharedPreferences) activity.getSharedPreferences(LOGIN_PREFERENCE_FILE.getValue(), MODE_PRIVATE);
+        sharedPreferences = activity.getSharedPreferences(LOGIN_PREFERENCE_FILE.getValue(), MODE_PRIVATE);
         this.name = sharedPreferences.getString(nameKey.getValue(), nameKey.getValue());
         this.account_id = sharedPreferences.getString(accountIdKey.getValue(), accountIdKey.getValue());
+        this.training = sharedPreferences.getBoolean(trainingKey.getValue(), false);
     }
     private void preferenceSaver(Activity activity) {
         SharedPreferences sharedPreferences;
-        sharedPreferences = (SharedPreferences) activity.getSharedPreferences(LOGIN_PREFERENCE_FILE.getValue(), MODE_PRIVATE);
+        sharedPreferences = activity.getSharedPreferences(LOGIN_PREFERENCE_FILE.getValue(), MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(nameKey.getValue(), this.name);
         editor.putString(accountIdKey.getValue(), this.account_id);

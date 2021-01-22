@@ -7,7 +7,7 @@ import android.os.Bundle;
 
 import com.grandi.lorenzo.gymtracker.FlagList;
 import com.grandi.lorenzo.gymtracker.R;
-import com.grandi.lorenzo.gymtracker.home.HomeHandler;
+import com.grandi.lorenzo.gymtracker.home.HomeActivity;
 
 import static com.grandi.lorenzo.gymtracker.KeyLoader.*;
 
@@ -22,7 +22,7 @@ public class TaskActivityHandler extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent intent = new Intent(this, HomeHandler.class);
+        Intent intent = new Intent(this, HomeActivity.class);
         new FlagList(intent);
         intent.putExtra(EXTRA_TASK_SELECTOR.getValue(), "");
         startActivity(intent);

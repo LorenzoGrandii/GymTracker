@@ -18,7 +18,7 @@ import com.budiyev.android.codescanner.CodeScanner;
 import com.budiyev.android.codescanner.CodeScannerView;
 import com.grandi.lorenzo.gymtracker.FlagList;
 import com.grandi.lorenzo.gymtracker.R;
-import com.grandi.lorenzo.gymtracker.home.HomeHandler;
+import com.grandi.lorenzo.gymtracker.home.HomeActivity;
 import com.grandi.lorenzo.gymtracker.task.CalendarHandler;
 
 
@@ -105,7 +105,7 @@ public class ScannerActivity extends AppCompatActivity {
 
     private void qrCodeDispatcher() {
         this.codeScanner.releaseResources();
-        Intent intent = new Intent(this, HomeHandler.class);
+        Intent intent = new Intent(this, HomeActivity.class);
         new FlagList(intent);
         preferenceSaver(this);
         startActivity(intent);
