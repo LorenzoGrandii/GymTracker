@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".main.MainActivity"
+    android:background="@color/colorPrimary"
+    android:theme="@style/Theme.GymTracker.home">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/default_margin"
+        android:gravity="center">
+        <TextView android:id="@+id/tv_welcome_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/tv_welcome_margin"
+            android:textSize="@dimen/tv_welcome_title"
+            android:text="@string/welcome"
+            android:textColor="@color/white"/>
+        <Button android:id="@+id/b_signin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_center_button"
+            android:layout_marginEnd="@dimen/margin_center_button"
+            android:layout_below="@id/tv_welcome_title"
+            android:text="@string/signin"
+            android:textColor="@color/colorPrimary"
+            android:textAllCaps="true"
+            android:backgroundTint="@color/white"
+            style="@style/Platform.MaterialComponents"
+            android:padding="@dimen/default_button_padding"/>
+        <LinearLayout android:id="@+id/tv_create"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/b_signin"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/default_margin"
+                android:layout_marginTop="4dp"
+                android:paddingBottom="2dp"
+                android:text="@string/newaccount"
+                android:textSize="@dimen/text_low_size"
+                android:textColor="@color/white_low_opacity" />
+            <TextView android:id="@+id/b_signup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:paddingBottom="2dp"
+                android:text="@string/signup"
+                android:textColor="@color/color1"
+                android:textSize="@dimen/text_low_size"
+                android:clickable="true"
+                android:focusable="true" />
+        </LinearLayout>
+    </RelativeLayout>
+    <fragment android:id="@+id/copyright"
+        android:name="com.grandi.lorenzo.gymtracker.FragmentCopyright"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" />
+</RelativeLayout>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#0288D1</color>
+    <color name="colorAccent">#eee</color>
+    <color name="colorPrimaryDark">#00589b</color>
+    <color name="black">#222</color>
+    <color name="white">#eee</color>
+    <color name="color1">#cf5c78</color>
+    <color name="colorButtonLogo">#00C853</color>
+    <color name="colorButtonExit">#de1a1a</color>
+    <color name="white_low_opacity">#afff</color>
+    <color name="blackLowOpacity">#7000</color>
+</resources>

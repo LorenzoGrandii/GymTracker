@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--=================================== BUTTON DIMENSIONS ===================================-->
+    <dimen name="default_circle_radius">999dp</dimen>
+    <dimen name="default_round_button">48dp</dimen>
+    <dimen name="margin_center_button">100dp</dimen>
+    <dimen name="default_button_padding">16dp</dimen>
+    <dimen name="default_rectangle_radius">14dp</dimen>
+    <dimen name="button_margin">20dp</dimen>
+    <dimen name="button_top_margin">8dp</dimen>
+    <dimen name="button_padding">8dp</dimen>
+    <dimen name="button_margin_codeScanner">24dp</dimen>
+    <dimen name="button_margin_list">64dp</dimen>
+    <dimen name="button_radius">999dp</dimen>
+    <dimen name="round_button">48dp</dimen>
+    <dimen name="button_layout_margin">36dp</dimen>
+    <dimen name="button_home_size">148dp</dimen>
+    <dimen name="rectangle_button_radius">16dp</dimen>
+    <dimen name="button_home_margin">12dp</dimen>
+
+    <!--=================================== LAYOUT DIMENSIONS ===================================-->
+    <dimen name="default_margin">8dp</dimen>
+    <item name="letter_spacing" type="dimen" format="float">-0.04</item>
+    <dimen name="tv_title_margin">32dp</dimen>
+    <dimen name="et_default_margin">22dp</dimen>
+    <dimen name="tv_welcome_margin">22dp</dimen>
+    <dimen name="tv_welcome_title">28sp</dimen>
+    <dimen name="low_margin">3dp</dimen>
+    <dimen name="scanner_margin">32dp</dimen>
+    <dimen name="rectangle_margin">32dp</dimen>
+    <dimen name="rectangle_margin_bottom">56dp</dimen>
+
+    <!--==================================== TEXT DIMENSIONS ====================================-->
+    <dimen name="text_size">18sp</dimen>
+    <dimen name="text_low_size">13sp</dimen>
+    <dimen name="text_high_size">22sp</dimen>
+    <dimen name="text_page_title">32sp</dimen>
+    <dimen name="title_margin">24dp</dimen>
+    <dimen name="title_margin_right">32dp</dimen>
+    <dimen name="text_rectangle_margin">48dp</dimen>
+    <dimen name="title_text_size">26sp</dimen>
+    <dimen name="profile_text_size">18sp</dimen>
+    <dimen name="title_margin_bottom">12dp</dimen>
+    <dimen name="login_text_size">22sp</dimen>
+    <dimen name="login_button_margin">88dp</dimen>
+    <dimen name="margin_date">40dp</dimen>
+    <dimen name="margin_date_top">16dp</dimen>
+
+</resources>
