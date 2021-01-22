@@ -45,5 +45,8 @@
     <dimen name="login_button_margin">88dp</dimen>
     <dimen name="margin_date">40dp</dimen>
     <dimen name="margin_date_top">16dp</dimen>
+    <dimen name="scanner_container_margin">50dp</dimen>
+    <dimen name="scanner_container_margin_top">100</dimen>
+    <dimen name="scanner_handler_margin">48dp</dimen>
 
 </resources>

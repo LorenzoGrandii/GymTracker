@@ -1,12 +1,16 @@
 package com.grandi.lorenzo.gymtracker.scanner;
 
-import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,11 +27,14 @@ import static com.grandi.lorenzo.gymtracker.KeyLoader.*;
 public class ScannerActivity extends AppCompatActivity {
 
     private boolean trainingStatus;
+
     private TextView tv_date_scanner;
 
     private CodeScanner codeScanner;
     private CodeScannerView scanner_view;
+    private Vibrator v;
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +45,12 @@ public class ScannerActivity extends AppCompatActivity {
         scanner_view.setOnClickListener(v -> {
             this.codeScanner.startPreview();
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        codeScanner.startPreview();
     }
 
     @Override
@@ -76,9 +89,12 @@ public class ScannerActivity extends AppCompatActivity {
         this.codeScanner = new CodeScanner(this, scanner_view);
         this.trainingStatus = preferenceLoader(this).getBoolean(trainingKey.getValue(), false);
         this.tv_date_scanner.setText((new CalendarHandler()).getDate());
+        this.v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
     }
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void qrCodeBind(String qrcode) {
         if (qrcode.equals(strQRFlag.getValue())){
+            v.vibrate(VibrationEffect.createOneShot(150, VibrationEffect.DEFAULT_AMPLITUDE));
             SharedPreferences.Editor editor = preferenceLoader(this).edit();
             editor.putBoolean(trainingKey.getValue(), !this.trainingStatus);
             editor.apply();

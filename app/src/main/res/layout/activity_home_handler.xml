@@ -117,7 +117,7 @@
                     android:tint="@color/white"
                     android:scaleType="fitCenter"
                     android:background="@drawable/button_rectangular"
-                    custom:backgroundTint="@color/colorButtonLogo"/>
+                    custom:backgroundTint="@color/colorButtonEnter"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
