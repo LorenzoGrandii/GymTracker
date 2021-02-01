@@ -12,6 +12,7 @@ public enum KeyLoader {
 
     /*====================================== QRCODE STRINGS ======================================*/
     strQRFlag (""),
+    strKeyFlag(""),
 
     /*======================================= EXTRAS KEYS ========================================*/
     EXTRA_ACCOUNT ("com.grandi.lorenzo.gymtracker.ACCOUNT"),

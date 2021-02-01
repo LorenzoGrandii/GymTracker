@@ -20,6 +20,8 @@ import com.grandi.lorenzo.gymtracker.FlagList;
 import com.grandi.lorenzo.gymtracker.R;
 import com.grandi.lorenzo.gymtracker.home.HomeActivity;
 
+import java.util.Objects;
+
 import static com.grandi.lorenzo.gymtracker.KeyLoader.LOGIN_PREFERENCE_FILE;
 import static com.grandi.lorenzo.gymtracker.KeyLoader.emailKey;
 import static com.grandi.lorenzo.gymtracker.KeyLoader.loggedKey;
@@ -49,7 +51,7 @@ public class FragmentNewAccount extends Fragment {
             initTaskComponents(activity);
             this.b_create.setOnClickListener(v -> {
                 v.setPressed(true);
-                loadTextInput();
+                this.loadTextInput();
                 if (!checkFields()) {
                     Toast.makeText(this.context, this.FILL_FORM_MESSAGE, Toast.LENGTH_SHORT).show();
                 } else {
@@ -79,6 +81,12 @@ public class FragmentNewAccount extends Fragment {
         }
         return flag;
     }
+
+    private void loadTextInput() {
+        this.email = Objects.requireNonNull(til_email.getEditText()).getText().toString();
+        this.name = Objects.requireNonNull(til_name.getEditText()).getText().toString();
+        this.password = Objects.requireNonNull(til_password.getEditText()).getText().toString();
+    }
     private void clearTextInput() {
         this.til_name.setErrorEnabled(false);
         this.til_email.setErrorEnabled(false);
@@ -104,14 +112,7 @@ public class FragmentNewAccount extends Fragment {
     private void initTaskComponents(FragmentActivity activity) {
         this.FILL_FORM_MESSAGE = activity.getString(R.string.fill_form);
     }
-    private void loadTextInput() {
-        this.til_name = this.view.findViewById(R.id.et_profile_name_new);
-        this.til_email = this.view.findViewById(R.id.et_profile_email_new);
-        this.til_password = this.view.findViewById(R.id.et_profile_password);
-        this.email = til_email.getEditText().getText().toString();
-        this.name = til_name.getEditText().getText().toString();
-        this.password = til_password.getEditText().getText().toString();
-    }
+
     private String getName() {
         return this.name;
     }

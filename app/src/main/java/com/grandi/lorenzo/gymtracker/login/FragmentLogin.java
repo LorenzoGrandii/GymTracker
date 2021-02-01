@@ -20,6 +20,8 @@ import com.grandi.lorenzo.gymtracker.FlagList;
 import com.grandi.lorenzo.gymtracker.home.HomeActivity;
 import com.grandi.lorenzo.gymtracker.R;
 
+import java.util.Objects;
+
 import static com.grandi.lorenzo.gymtracker.KeyLoader.*;
 
 public class FragmentLogin extends Fragment {
@@ -86,10 +88,8 @@ public class FragmentLogin extends Fragment {
         return flag;
     }
     private void loadTextInput() {
-        this.til_name = this.view.findViewById(R.id.et_profile_name);
-        this.til_password = this.view.findViewById(R.id.et_profile_password);
-        this.name = this.til_name.getEditText().getText().toString();
-        this.password = this.til_password.getEditText().getText().toString();
+        this.name = Objects.requireNonNull(this.til_name.getEditText()).getText().toString();
+        this.password = Objects.requireNonNull(this.til_password.getEditText()).getText().toString();
     }
     private void clearTextInput() {
         this.til_name.setErrorEnabled(false);

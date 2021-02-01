@@ -81,6 +81,17 @@ public class MainActivity extends AppCompatActivity {
         b_signup.setTextColor(getColor(R.color.color1));
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
+
     @SuppressLint("ClickableViewAccessibility")
     private final View.OnTouchListener speakTouchListener = (v, event) -> {
         v.onTouchEvent(event);

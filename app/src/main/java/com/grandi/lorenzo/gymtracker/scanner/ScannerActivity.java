@@ -1,113 +1,146 @@
 package com.grandi.lorenzo.gymtracker.scanner;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
-import android.app.Activity;
+import android.Manifest;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.VibrationEffect;
-import android.os.Vibrator;
+import android.util.SparseArray;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.budiyev.android.codescanner.CodeScanner;
-import com.budiyev.android.codescanner.CodeScannerView;
-import com.grandi.lorenzo.gymtracker.FlagList;
+import com.google.android.gms.vision.CameraSource;
+import com.google.android.gms.vision.Detector;
+import com.google.android.gms.vision.barcode.Barcode;
+import com.google.android.gms.vision.barcode.BarcodeDetector;
 import com.grandi.lorenzo.gymtracker.R;
-import com.grandi.lorenzo.gymtracker.home.HomeActivity;
 import com.grandi.lorenzo.gymtracker.task.CalendarHandler;
 
+
+import java.io.IOException;
 
 import static com.grandi.lorenzo.gymtracker.KeyLoader.*;
 
 public class ScannerActivity extends AppCompatActivity {
 
     private boolean trainingStatus;
+    private static final int REQUEST_CAMERA_PERMISSION = 201;
 
+    private Context context;
     private TextView tv_date_scanner;
+    private SurfaceView surfaceView;
 
-    private CodeScanner codeScanner;
-    private CodeScannerView scanner_view;
-    private Vibrator v;
+    private CameraSource cameraSource;
+    private BarcodeDetector barcodeDetector;
+
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_scanner);
-        initViewComponents();
-        initTaskComponents();
-        this.codeScanner.setDecodeCallback(result -> runOnUiThread(() -> qrCodeBind(result.getText())));
-        scanner_view.setOnClickListener(v -> {
-            this.codeScanner.startPreview();
-        });
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        codeScanner.startPreview();
+        this.setContentView(R.layout.activity_scanner);
+        this.initViewComponents();
+        this.initTaskComponents();
     }
 
     @Override
     protected void onStop() {
+        preferenceSaver();
+        qrCodeDispatcher();
         super.onStop();
-        preferenceSaver(this);
-        codeScanner.releaseResources();
     }
 
     @Override
     protected void onPause() {
+        preferenceSaver();
+        qrCodeDispatcher();
         super.onPause();
-        preferenceSaver(this);
-        codeScanner.releaseResources();
     }
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
         qrCodeDispatcher();
+        super.onBackPressed();
     }
 
-
-    private SharedPreferences preferenceLoader(Activity activity) {
-        return activity.getSharedPreferences(LOGIN_PREFERENCE_FILE.getValue(), MODE_PRIVATE);
+    private SharedPreferences preferenceLoader() {
+        return this.getSharedPreferences(LOGIN_PREFERENCE_FILE.getValue(), MODE_PRIVATE);
     }
-    private void preferenceSaver(Activity activity) {
-        SharedPreferences.Editor editor = activity.getSharedPreferences(LOGIN_PREFERENCE_FILE.getValue(), MODE_PRIVATE).edit();
+
+    private void preferenceSaver() {
+        SharedPreferences.Editor editor = this.getSharedPreferences(LOGIN_PREFERENCE_FILE.getValue(), MODE_PRIVATE).edit();
+        editor.putBoolean(trainingKey.getValue(), this.trainingStatus);
         editor.apply();
     }
-    private void initViewComponents () {
-        this.scanner_view = this.findViewById(R.id.view_scanner);
+
+    private void initViewComponents() {
+        this.context = this;
         this.tv_date_scanner = this.findViewById(R.id.tv_date_scanner);
+        this.surfaceView = this.findViewById(R.id.previewView);
     }
-    private void initTaskComponents () {
-        this.codeScanner = new CodeScanner(this, scanner_view);
-        this.trainingStatus = preferenceLoader(this).getBoolean(trainingKey.getValue(), false);
+    private void initTaskComponents() {
+        this.trainingStatus = preferenceLoader().getBoolean(trainingKey.getValue(), false);
         this.tv_date_scanner.setText((new CalendarHandler()).getDate());
-        this.v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        this.cameraManager();
     }
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    private void qrCodeBind(String qrcode) {
-        if (qrcode.equals(strQRFlag.getValue())){
-            v.vibrate(VibrationEffect.createOneShot(150, VibrationEffect.DEFAULT_AMPLITUDE));
-            SharedPreferences.Editor editor = preferenceLoader(this).edit();
-            editor.putBoolean(trainingKey.getValue(), !this.trainingStatus);
-            editor.apply();
-            qrCodeDispatcher();
-        } else
-            Toast.makeText(this, getString(R.string.toast_qrcode_scanned_error), Toast.LENGTH_SHORT).show();
+
+    private void cameraManager() {
+        barcodeDetector = new BarcodeDetector.Builder(this).setBarcodeFormats(Barcode.QR_CODE).build();
+        this.cameraSource = new CameraSource.Builder(this, this.barcodeDetector).setRequestedPreviewSize(1920, 1080).setAutoFocusEnabled(true).build();
+        surfaceView.getHolder().addCallback(new SurfaceHolder.Callback() {
+            @Override
+            public void surfaceCreated(@NonNull SurfaceHolder holder) {
+                try {
+                    if (ActivityCompat.checkSelfPermission(ScannerActivity.this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED)
+                        cameraSource.start(surfaceView.getHolder());
+                    else
+                        ActivityCompat.requestPermissions(ScannerActivity.this, new String[]{Manifest.permission.CAMERA}, REQUEST_CAMERA_PERMISSION);
+                } catch (IOException e){
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void surfaceChanged(@NonNull SurfaceHolder holder, int format, int width, int height) {
+            }
+
+            @Override
+            public void surfaceDestroyed(@NonNull SurfaceHolder holder) {
+                cameraSource.stop();
+                cameraSource.release();
+            }
+        });
+        barcodeDetector.setProcessor(new Detector.Processor<Barcode>() {
+            @Override
+            public void release() {
+            }
+
+            @Override
+            public void receiveDetections(@NonNull Detector.Detections<Barcode> detections) {
+                SparseArray<Barcode> qrCodes = detections.getDetectedItems();
+                if (qrCodes.size()!=0 && qrCodes.valueAt(0).displayValue.equals(strQRFlag.getValue())) {
+                    SharedPreferences.Editor editor = preferenceLoader().edit();
+                    editor.putBoolean(trainingKey.getValue(), !trainingStatus);
+                    editor.apply();
+                    qrCodeDispatcher();
+                }
+            }
+        });
     }
 
     private void qrCodeDispatcher() {
-        this.codeScanner.releaseResources();
-        Intent intent = new Intent(this, HomeActivity.class);
-        new FlagList(intent);
-        preferenceSaver(this);
-        startActivity(intent);
+        preferenceSaver();
+        cameraSource.stop();
+        cameraSource.release();
+        barcodeDetector.release();
+        startActivity(getParentActivityIntent());
     }
 }

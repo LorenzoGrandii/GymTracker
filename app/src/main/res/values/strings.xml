@@ -30,4 +30,5 @@
     <string name="toast_qrcode_error">Error!</string>
     <string name="toast_qrcode_scanned_error">Scan the right QRcode!</string>
     <string name="scanner">Scanner</string>
+    <string name="keyInput">Insert the key</string>
 </resources>

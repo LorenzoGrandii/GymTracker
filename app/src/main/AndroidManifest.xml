@@ -2,8 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.grandi.lorenzo.gymtracker">
 
-    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.VIBRATE"/>
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.hardware.camera.autofocus" />
+    <uses-permission-sdk-23 android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.FLASHLIGHT" />
 
     <application
@@ -13,9 +15,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GymTracker">
-        <activity android:name=".scanner.ScannerActivity" android:theme="@style/Theme.GymTracker.task"/>
-        <activity android:name=".taskactivity.TaskActivityHandler" android:theme="@style/Theme.GymTracker.task"/>
-        <activity android:name=".home.HomeActivity" android:theme="@style/Theme.GymTracker.home"/>
+        <activity android:name=".scanner.ScannerActivity" android:theme="@style/Theme.GymTracker.task" android:parentActivityName=".home.HomeActivity"/>
+        <activity android:name=".taskactivity.TaskActivityHandler" android:theme="@style/Theme.GymTracker.task" android:parentActivityName=".home.HomeActivity"/>
+        <activity android:name=".home.HomeActivity" android:theme="@style/Theme.GymTracker.home" />
         <activity android:name=".login.LoginHandler"/>
         <activity android:name=".main.MainActivity" android:theme="@style/Theme.GymTracker.home">
             <intent-filter>
@@ -23,6 +25,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="com.google.android.gms.vision.DEPENDENCIES"
+            android:value="barcode" />
+
     </application>
 
 </manifest>
