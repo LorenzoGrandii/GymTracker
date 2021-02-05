@@ -29,7 +29,6 @@ public class FragmentLogin extends Fragment {
     private TextInputLayout til_name, til_password;
     private Button b_login;
     private Context context;
-    private View view;
     private String name, password;
     private String FILL_FORM_MESSAGE;
 
@@ -64,7 +63,6 @@ public class FragmentLogin extends Fragment {
 
     private void initViewComponents(FragmentActivity activity) {
         this.context = getContext();
-        this.view = getView();
         this.til_name = activity.findViewById(R.id.et_profile_name);
         this.til_password = activity.findViewById(R.id.et_profile_password);
         this.b_login = activity.findViewById(R.id.b_login);
@@ -73,7 +71,7 @@ public class FragmentLogin extends Fragment {
         this.FILL_FORM_MESSAGE = activity.getString(R.string.fill_form);
     }
 
-    //TODO: Database handler
+    //TODO: Account id creator
     private boolean checkFields() {
         boolean flag = true;
         this.clearTextInput();

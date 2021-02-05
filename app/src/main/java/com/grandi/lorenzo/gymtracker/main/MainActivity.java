@@ -5,10 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -18,7 +21,14 @@ import android.widget.Toast;
 import com.grandi.lorenzo.gymtracker.FlagList;
 import com.grandi.lorenzo.gymtracker.home.HomeActivity;
 import com.grandi.lorenzo.gymtracker.R;
-import com.grandi.lorenzo.gymtracker.login.LoginHandler;
+import com.grandi.lorenzo.gymtracker.login.LoginActivity;
+
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 
 import static com.grandi.lorenzo.gymtracker.KeyLoader.*;
 
@@ -46,14 +56,14 @@ public class MainActivity extends AppCompatActivity {
         } else {
             b_signin.setOnClickListener(v -> {
                 v.setPressed(true);
-                Intent intent = new Intent(this, LoginHandler.class);
+                Intent intent = new Intent(this, LoginActivity.class);
                 new FlagList(intent);
                 intent.putExtra(EXTRA_ACCOUNT.getValue(), true);
                 startActivity(intent);
             });
             b_signup.setOnClickListener(v -> {
                 b_signup.setTextColor(getColor(R.color.white));
-                Intent intent = new Intent(this, LoginHandler.class);
+                Intent intent = new Intent(this, LoginActivity.class);
                 new FlagList(intent);
                 intent.putExtra(EXTRA_ACCOUNT.getValue(), false);
                 startActivity(intent);
@@ -113,4 +123,6 @@ public class MainActivity extends AppCompatActivity {
         this.b_signup.setTextColor(getColor(R.color.color1));
         this.b_signin = findViewById(R.id.b_signin);
     }
+
+
 }

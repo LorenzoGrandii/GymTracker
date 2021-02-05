@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".login.LoginHandler"
+    tools:context=".login.LoginActivity"
     android:background="@color/colorPrimary"
     android:theme="@style/Theme.GymTracker.home">
     <FrameLayout android:id="@+id/f_login_container"

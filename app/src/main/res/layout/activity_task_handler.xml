@@ -6,5 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".taskactivity.TaskActivityHandler"
     android:theme="@style/Theme.GymTracker.task">
+    <FrameLayout android:id="@+id/f_task_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </RelativeLayout>

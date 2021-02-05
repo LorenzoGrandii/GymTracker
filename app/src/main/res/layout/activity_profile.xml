@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".scanner.ScannerActivity"
-    android:background="@color/white"
-    android:theme="@style/Theme.GymTracker.task">
-    <TextView android:id="@+id/tv_date_scanner"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".taskactivity.ProfileActivity"
+    android:background="@color/white">
+    <TextView android:id="@+id/tv_date_profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/margin_date"
@@ -15,18 +14,18 @@
         android:textColor="@color/colorPrimaryLowOpacity"
         android:fontFamily="@font/helvetica_bold"
         android:textSize="@dimen/text_low_size"/>
-    <LinearLayout android:id="@+id/header_scanner"
+    <LinearLayout android:id="@+id/header_training"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/default_margin"
         android:orientation="horizontal"
         android:gravity="center_vertical|end">
-        <TextView android:id="@+id/scanner_title"
+        <TextView android:id="@+id/profile_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/title_margin"
             android:layout_marginBottom="@dimen/title_margin"
-            android:text="@string/scanner"
+            android:text="@string/training"
             android:textColor="@color/colorPrimary"
             android:letterSpacing="-0.03"
             android:textFontWeight="1000"
@@ -34,13 +33,24 @@
             android:fontFamily="@font/helvetica_bold"
             android:layout_marginEnd="@dimen/title_margin_right" />
     </LinearLayout>
-    <SurfaceView android:id="@+id/previewView"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/header_scanner"
-        android:layout_centerInParent="true"
-        android:layout_marginStart="@dimen/scanner_container_margin"
-        android:layout_marginEnd="@dimen/scanner_container_margin"
-        android:layout_marginTop="@dimen/scanner_container_margin_top"
-        android:layout_marginBottom="@dimen/scanner_container_margin_top" />
+        android:layout_below="@id/header_training"
+        android:gravity="center"
+        android:layout_margin="@dimen/default_margin"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+        <CalendarView android:id="@+id/calendar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:dateTextAppearance="@style/Theme.GymTracker.CalendarViewDayCustomText"
+            android:weekDayTextAppearance="@style/Theme.GymTracker.CalendarViewWeekCustomText"
+            android:focusedMonthDateColor="@color/color1"
+            android:selectedWeekBackgroundColor="@color/colorAccentLowOpacity" />
+    </LinearLayout>
 </RelativeLayout>

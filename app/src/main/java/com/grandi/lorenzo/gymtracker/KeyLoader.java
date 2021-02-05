@@ -10,9 +10,11 @@ public enum KeyLoader {
     loggedKey ("loggedKey"),
     trainingKey ("trainingKey"),
 
+    /*======================================= FILE STRINGS =======================================*/
+    REGISTRATION_FILE ("personal_backup"),
+
     /*====================================== QRCODE STRINGS ======================================*/
     strQRFlag (""),
-    strKeyFlag(""),
 
     /*======================================= EXTRAS KEYS ========================================*/
     EXTRA_ACCOUNT ("com.grandi.lorenzo.gymtracker.ACCOUNT"),

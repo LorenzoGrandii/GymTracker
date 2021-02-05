@@ -8,12 +8,12 @@
     <color name="white">#eee</color>
     <color name="color1">#cf5c78</color>
     <color name="colorButtonEnter">#00C853</color>
-    <color name="colorButtonExit">#F44336</color>
     <color name="white_low_opacity">#afff</color>
     <color name="blackLowOpacity">#7000</color>
-    <color name="colorScanExit">#FF5252</color>
+    <color name="colorButtonExit">#FF5252</color>
     <color name="button_pressed">#bfff</color>
     <color name="button_hovered">#e6ffff</color>
-    <color name="colorButtonExitDark">#ddF44336</color>
-    <color name="colorButtonEnterDark">#009624</color>
+    <color name="colorButtonExitDark">#ff7961</color>
+    <color name="colorButtonEnterDark">#bb00C853</color>
+    <color name="colorAccentLowOpacity">#775eb8ff</color>
 </resources>

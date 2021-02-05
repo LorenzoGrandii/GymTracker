@@ -15,7 +15,6 @@ import android.util.SparseArray;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
@@ -24,7 +23,7 @@ import com.google.android.gms.vision.barcode.BarcodeDetector;
 import com.grandi.lorenzo.gymtracker.R;
 import com.grandi.lorenzo.gymtracker.task.CalendarHandler;
 
-
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 import static com.grandi.lorenzo.gymtracker.KeyLoader.*;
@@ -34,13 +33,12 @@ public class ScannerActivity extends AppCompatActivity {
     private boolean trainingStatus;
     private static final int REQUEST_CAMERA_PERMISSION = 201;
 
-    private Context context;
     private TextView tv_date_scanner;
     private SurfaceView surfaceView;
+    private Context context;
 
     private CameraSource cameraSource;
     private BarcodeDetector barcodeDetector;
-
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -82,11 +80,11 @@ public class ScannerActivity extends AppCompatActivity {
     }
 
     private void initViewComponents() {
-        this.context = this;
         this.tv_date_scanner = this.findViewById(R.id.tv_date_scanner);
         this.surfaceView = this.findViewById(R.id.previewView);
     }
     private void initTaskComponents() {
+        this.context = this;
         this.trainingStatus = preferenceLoader().getBoolean(trainingKey.getValue(), false);
         this.tv_date_scanner.setText((new CalendarHandler()).getDate());
         this.cameraManager();
@@ -130,6 +128,7 @@ public class ScannerActivity extends AppCompatActivity {
                     SharedPreferences.Editor editor = preferenceLoader().edit();
                     editor.putBoolean(trainingKey.getValue(), !trainingStatus);
                     editor.apply();
+                    registerEvent();
                     qrCodeDispatcher();
                 }
             }
@@ -142,5 +141,20 @@ public class ScannerActivity extends AppCompatActivity {
         cameraSource.release();
         barcodeDetector.release();
         startActivity(getParentActivityIntent());
+    }
+
+    private void registerEvent() {
+            String name, date, registration;
+            name = preferenceLoader().getString(nameKey.getValue(), nameKey.getValue());
+            date = new CalendarHandler().getDateComplete();
+            if (trainingStatus) registration = " > " + name + " left the gym :\t" + date + "\n";
+            else registration = " > " + name + " joined the gym :\t" + date + "\n";
+            try {
+                FileOutputStream eventRegister = openFileOutput(context.getFilesDir().getName().concat(REGISTRATION_FILE.getValue()), Context.MODE_PRIVATE);
+                eventRegister.write(registration.getBytes());
+                eventRegister.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
     }
 }

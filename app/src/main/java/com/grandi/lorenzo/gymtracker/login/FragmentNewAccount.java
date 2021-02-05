@@ -19,7 +19,9 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.grandi.lorenzo.gymtracker.FlagList;
 import com.grandi.lorenzo.gymtracker.R;
 import com.grandi.lorenzo.gymtracker.home.HomeActivity;
+import com.grandi.lorenzo.gymtracker.task.CalendarHandler;
 
+import java.io.FileOutputStream;
 import java.util.Objects;
 
 import static com.grandi.lorenzo.gymtracker.KeyLoader.LOGIN_PREFERENCE_FILE;
@@ -100,6 +102,9 @@ public class FragmentNewAccount extends Fragment {
         editor.putString(passwordKey.getValue(), this.password);
         editor.putBoolean(loggedKey.getValue(), true);
         editor.apply();
+    }
+    private SharedPreferences preferenceLoader(FragmentActivity activity) {
+        return activity.getSharedPreferences(LOGIN_PREFERENCE_FILE.getValue(), Context.MODE_PRIVATE);
     }
     private void initViewComponents(FragmentActivity activity) {
         this.context = getContext();

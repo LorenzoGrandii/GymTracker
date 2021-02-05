@@ -6,16 +6,15 @@ import java.util.Locale;
 
 public class CalendarHandler {
 
-    private Calendar calendar;
-    private SimpleDateFormat dateFormat;
-    private String date;
+    private final Calendar calendar;
 
     public CalendarHandler() {
-        this.calendar = Calendar.getInstance();
-        this.dateFormat = new SimpleDateFormat("EEE, MMM d", Locale.UK);
-        this.date = dateFormat.format(calendar.getTime());
+        this.calendar = Calendar.getInstance();;
     }
     public String getDate() {
-        return date;
+        return new SimpleDateFormat("EEE, MMM d", Locale.UK).format(this.calendar.getTime());
+    }
+    public String getDateComplete(){
+        return new SimpleDateFormat("EEE, MMM d - HH:mm:ss", Locale.UK).format(this.calendar.getTime());
     }
 }

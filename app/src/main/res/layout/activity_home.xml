@@ -106,42 +106,10 @@
                     android:scaleType="fitCenter"
                     android:background="@drawable/button_rectangular"
                     custom:backgroundTint="@color/white"/>
-                <ImageButton android:id="@+id/scanner_opener"
-                    android:layout_width="@dimen/button_home_size"
-                    android:layout_height="@dimen/button_home_size"
-                    android:layout_gravity="bottom|start"
-                    android:layout_marginStart="@dimen/button_home_margin"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:src="@drawable/qr_code"
-                    android:tint="@color/white"
-                    android:scaleType="fitCenter"
-                    android:background="@drawable/button_rectangular"
-                    custom:backgroundTint="@color/colorButtonEnter"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="3"
-                android:orientation="horizontal"
-                android:gravity="center_horizontal|top"
-                android:padding="@dimen/button_home_margin">
-                <ImageButton android:id="@+id/training_opener"
-                    android:layout_width="@dimen/button_home_size"
-                    android:layout_height="@dimen/button_home_size"
-                    android:layout_gravity="top|end"
-                    android:layout_marginEnd="@dimen/button_home_margin"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:src="@drawable/calendar"
-                    android:tint="@color/colorPrimary"
-                    android:scaleType="fitCenter"
-                    android:background="@drawable/button_rectangular"
-                    custom:backgroundTint="@color/white"/>
                 <ImageButton android:id="@+id/settings_opener"
                     android:layout_width="@dimen/button_home_size"
                     android:layout_height="@dimen/button_home_size"
-                    android:layout_gravity="top|start"
+                    android:layout_gravity="bottom|start"
                     android:layout_marginStart="@dimen/button_home_margin"
                     android:clickable="true"
                     android:focusable="true"
@@ -150,6 +118,28 @@
                     android:scaleType="fitCenter"
                     android:background="@drawable/button_rectangular"
                     custom:backgroundTint="@color/white"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="3"
+                android:orientation="horizontal"
+                android:gravity="center_horizontal|top"
+                android:padding="@dimen/button_home_margin">
+                <ImageButton android:id="@+id/scanner_opener"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/button_home_size"
+                    android:layout_gravity="top|start"
+                    android:layout_marginStart="@dimen/button_home_margin"
+                    android:layout_marginEnd="@dimen/button_home_margin"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:src="@drawable/qr_code"
+                    android:tint="@color/white"
+                    android:scaleType="fitCenter"
+                    android:background="@drawable/button_rectangular"
+                    custom:backgroundTint="@color/colorButtonEnter"/>
+
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
