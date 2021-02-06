@@ -3,6 +3,7 @@ package com.grandi.lorenzo.gymtracker;
 public enum KeyLoader {
     /*===================================== PREFERENCE KEYS ======================================*/
     LOGIN_PREFERENCE_FILE ("com.grandi.lorenzo.gymtracker.loginPreference"),
+    SETTINGS_PREFERENCE_FILE("com.grandi.lorenzo.gymtracker.settingsPreference"),
     emailKey ("emailKey"),
     accountIdKey ("accountIdKey"),
     nameKey ("nameKey"),
