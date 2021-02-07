@@ -30,4 +30,6 @@
     <string name="scanner">Scanner</string>
     <string name="keyInput">Insert the key</string>
     <string name="profile">Profile</string>
+    <string name="color_picker">App Color</string>
+    <string name="app_color">App Color</string>
 </resources>
