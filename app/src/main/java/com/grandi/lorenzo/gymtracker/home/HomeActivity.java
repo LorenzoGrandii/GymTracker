@@ -16,6 +16,8 @@ import androidx.fragment.app.FragmentActivity;
 
 import com.grandi.lorenzo.gymtracker.FlagList;
 import com.grandi.lorenzo.gymtracker.R;
+import com.grandi.lorenzo.gymtracker.login.LoginActivity;
+import com.grandi.lorenzo.gymtracker.main.MainActivity;
 import com.grandi.lorenzo.gymtracker.taskactivity.SettingsActivity;
 import com.grandi.lorenzo.gymtracker.scanner.ScannerActivity;
 import com.grandi.lorenzo.gymtracker.taskactivity.ProfileActivity;
@@ -32,13 +34,11 @@ import static com.grandi.lorenzo.gymtracker.KeyLoader.*;
 
 public class HomeActivity extends FragmentActivity {
 
-    private TextView tv_date, tv_name, tv_account_id;
+    private TextView tv_date, tv_name;
     private ImageButton ib_profile, ib_scanner, ib_settings;
 
-    private String name, account_id;
+    private String name;
     private boolean training;
-
-    private static final String TAG = "Home";
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -46,13 +46,18 @@ public class HomeActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        registerLogin();
+        if (preferenceLoader(this).getBoolean(loggedKey.getValue(), false)) {
+            registerLogin();
 
-
-        preferenceLoader(this);
-        initViewComponents(this);
-        initTaskComponents();
-        preferenceSaver(this);
+            preferenceLoader(this);
+            initViewComponents(this);
+            initTaskComponents();
+            preferenceSaver(this);
+        } else {
+            Intent intent = new Intent(this, MainActivity.class);
+            new FlagList(intent);
+            startActivity(intent);
+        }
     }
 
     @Override
@@ -73,14 +78,12 @@ public class HomeActivity extends FragmentActivity {
         sharedPreferences = activity.getSharedPreferences(LOGIN_PREFERENCE_FILE.getValue(), MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(nameKey.getValue(), this.name);
-        editor.putString(accountIdKey.getValue(), this.account_id);
         editor.apply();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void initViewComponents(Activity activity) {
         this.tv_name = activity.findViewById(R.id.tv_name);
-        this.tv_account_id = activity.findViewById(R.id.tvLogin);
         this.tv_date = activity.findViewById(R.id.tv_date);
 
         this.ib_profile = activity.findViewById(R.id.profile_opener);
@@ -116,12 +119,9 @@ public class HomeActivity extends FragmentActivity {
     private void initTaskComponents() {
         this.tv_date.setText((new CalendarHandler()).getDate());
         this.name = preferenceLoader(this).getString(nameKey.getValue(), nameKey.getValue());
-        this.account_id = preferenceLoader(this).getString(accountIdKey.getValue(), accountIdKey.getValue());
         this.training = preferenceLoader(this).getBoolean(trainingKey.getValue(), false);
 
         if (!this.name.isEmpty() && !this.name.equals(nameKey.getValue())) this.tv_name.setText(this.name);
-        if (!this.account_id.isEmpty() && !this.account_id.equals(nameKey.getValue()))
-            this.tv_account_id.setText(this.account_id);
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")

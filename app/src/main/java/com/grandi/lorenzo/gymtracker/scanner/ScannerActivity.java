@@ -64,6 +64,13 @@ public class ScannerActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onRestart() {
+        super.onRestart();
+        this.initViewComponents();
+        this.initTaskComponents();
+    }
+
+    @Override
     public void onBackPressed() {
         qrCodeDispatcher();
         super.onBackPressed();
@@ -140,7 +147,6 @@ public class ScannerActivity extends AppCompatActivity {
         cameraSource.stop();
         cameraSource.release();
         barcodeDetector.release();
-        startActivity(getParentActivityIntent());
     }
 
     private void registerEvent() {
