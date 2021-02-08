@@ -50,6 +50,7 @@
     <dimen name="profile_text_size">20sp</dimen>
     <dimen name="title_margin_bottom">12dp</dimen>
     <dimen name="login_text_size">24sp</dimen>
+    <dimen name="switch_dark">48dp</dimen>
 
 
 </resources>
