@@ -10,6 +10,8 @@ public enum KeyLoader {
     loggedKey ("loggedKey"),
     trainingKey ("trainingKey"),
     colorKey ("colorKey"),
+    temperatureKey ("temperatureKey"),
+    stepCounterKey ("stepCounterKey"),
 
     /*======================================= FILE STRINGS =======================================*/
     REGISTRATION_FILE ("personal_backup"),
