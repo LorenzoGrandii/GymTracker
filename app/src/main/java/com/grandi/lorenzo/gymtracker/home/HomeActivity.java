@@ -115,6 +115,10 @@ public class HomeActivity extends FragmentActivity {
             new FlagList(intent);
             startActivity(intent);
         });
+
+        switch (preferenceLoader(this).getString(colorKey.getValue(), "blue")) {
+            // color switching
+        }
     }
     private void initTaskComponents() {
         this.tv_date.setText((new CalendarHandler()).getDate());
