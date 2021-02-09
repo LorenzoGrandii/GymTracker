@@ -9,7 +9,6 @@ public enum KeyLoader {
     passwordKey ("passwordKey"),
     loggedKey ("loggedKey"),
     trainingKey ("trainingKey"),
-    colorKey ("colorKey"),
     temperatureKey ("temperatureKey"),
     stepCounterKey ("stepCounterKey"),
 

@@ -51,6 +51,7 @@
     <dimen name="title_margin_bottom">12dp</dimen>
     <dimen name="login_text_size">24sp</dimen>
     <dimen name="switch_dark">48dp</dimen>
+    <dimen name="margin_settings_buttons">128dp</dimen>
 
 
 </resources>

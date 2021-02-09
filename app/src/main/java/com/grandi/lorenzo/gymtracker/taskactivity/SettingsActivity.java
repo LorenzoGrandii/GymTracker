@@ -12,7 +12,6 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.grandi.lorenzo.gymtracker.FlagList;
@@ -43,7 +42,6 @@ public class SettingsActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        preferenceSaver();
         Intent intent = new Intent(this, HomeActivity.class);
         new FlagList(intent);
         startActivity(intent);
@@ -69,12 +67,13 @@ public class SettingsActivity extends AppCompatActivity {
         this.b_save = findViewById(R.id.b_settings_saver);
         this.b_reset = findViewById(R.id.b_settings_reset);
         this.exit = findViewById(R.id.b_exit);
+
+        this.sc_temperature.setChecked(preferencesLoader().getBoolean(temperatureKey.getValue(), true));
+        this.sc_stepCounter.setChecked(preferencesLoader().getBoolean(stepCounterKey.getValue(), true));
     }
     @SuppressLint("ClickableViewAccessibility")
     private void initTaskComponents() {
         // TODO: initialization for all task components
-        this.sc_temperature.setChecked(preferencesLoader().getBoolean(temperatureKey.getValue(), false));
-        this.sc_stepCounter.setChecked(preferencesLoader().getBoolean(stepCounterKey.getValue(), false));
 
         switchChecker();
         this.exit.setOnClickListener(v -> {
@@ -106,19 +105,28 @@ public class SettingsActivity extends AppCompatActivity {
     private void switchChecker() {
         this.sc_temperature.setOnCheckedChangeListener((buttonView, isChecked) -> {
             temperature_enabled = isChecked;
+            SharedPreferences.Editor editor = preferencesLoader().edit();
+            editor.putBoolean(trainingKey.getValue(), temperature_enabled);
+            editor.apply();
         });
         this.sc_stepCounter.setOnCheckedChangeListener((buttonView, isChecked) -> {
             stepcounter_enabled = isChecked;
+            SharedPreferences.Editor editor = preferencesLoader().edit();
+            editor.putBoolean(stepCounterKey.getValue(), stepcounter_enabled);
+            editor.apply();
         });
         b_save.setOnClickListener(v -> {
             this.preferenceSaver();
+            Intent intent = new Intent(SettingsActivity.this, HomeActivity.class);
+            new FlagList(intent);
+            startActivity(intent);
         });
         b_reset.setOnClickListener(v -> {
             SharedPreferences.Editor editor = preferencesLoader().edit();
             editor.clear();
             editor.apply();
-            this.sc_stepCounter.setChecked(false);
-            this.sc_temperature.setChecked(false);
+            this.sc_stepCounter.setChecked(true);
+            this.sc_temperature.setChecked(true);
         });
     }
 }

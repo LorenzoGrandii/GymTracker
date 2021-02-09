@@ -88,7 +88,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="@dimen/scanner_container_margin_top"
+            android:layout_marginTop="@dimen/margin_settings_buttons"
             android:layout_below="@id/ll_step_counter_switch"
             android:gravity="center">
             <Button android:id="@+id/b_settings_reset"

@@ -39,9 +39,10 @@
     <string name="reset">Reset</string>
     <string name="reset_account">Would you change account?</string>
     <string name="exit">Exit</string>
-    <string name="gym_temperature">Temperature received : </string>
+    <string name="gym_temperature">Temperature :</string>
     <string name="step_counter">Step counted :</string>
     <string name="calendar">Calendar</string>
+    <string name="sensor_disabled">Sensor disabled</string>
     <string-array name="color_array">
         <item>Blue</item>
         <item>Green</item>
