@@ -22,6 +22,7 @@ public class ProfileActivity extends AppCompatActivity implements SensorEventLis
     private TextView tv_profile_date, tv_temperature, tv_step_counter;
     private SensorManager sensorManager;
     private int temperature, steps;
+    private Sensor s_temperature,step_counter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,9 +33,9 @@ public class ProfileActivity extends AppCompatActivity implements SensorEventLis
         initTaskComponents();
     }
 
-    private SharedPreferences preferenceLoader() {
-        return this.getSharedPreferences(SETTINGS_PREFERENCE_FILE.getValue(), MODE_PRIVATE);
-    }
+    //private SharedPreferences preferenceLoader() {
+      //  return this.getSharedPreferences(SETTINGS_PREFERENCE_FILE.getValue(), MODE_PRIVATE);
+  //  }
 
     private void initViewComponents() {
         this.tv_profile_date = findViewById(R.id.tv_date_profile);
@@ -44,16 +45,37 @@ public class ProfileActivity extends AppCompatActivity implements SensorEventLis
     private void initTaskComponents() {
         this.tv_profile_date.setText(new CalendarHandler().getDate());
         this.sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-        Sensor s_temperature = this.sensorManager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE);
+        if(sensorManager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE)==null)
+            tv_temperature.setText("not available");
+        else
+        s_temperature = this.sensorManager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE);
+        if(sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER)==null)
+            tv_step_counter.setText("not available");
+        else
+        step_counter=this.sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
     }
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-        this.temperature = Math.round(event.values[0]);
+        if(event.sensor.getType()==Sensor.TYPE_AMBIENT_TEMPERATURE)
+            this.tv_temperature.setText(event.values[0]+" °C");
+        //this.temperature = Math.round(event.values[0]);
+        else if (event.sensor.getType()==Sensor.TYPE_STEP_COUNTER)
+            this.tv_step_counter.setText(event.values[0]+" passi");
     }
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
 
+    }
+    @Override
+    protected void onResume(){
+        super.onResume();
+        sensorManager.registerListener(this,s_temperature,SensorManager.SENSOR_DELAY_NORMAL);
+        sensorManager.registerListener(this,step_counter,SensorManager.SENSOR_DELAY_NORMAL);
+    }
+    protected void onPause(){
+        super.onPause();
+        sensorManager.unregisterListener(this);
     }
 }
