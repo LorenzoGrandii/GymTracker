@@ -133,8 +133,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:paddingBottom="2dp"
-                android:layout_above="@id/copyright"
-                android:layout_toEndOf="@id/change_account"
                 android:text="@string/exit"
                 android:textColor="@color/color1"
                 android:textSize="@dimen/text_low_size"
