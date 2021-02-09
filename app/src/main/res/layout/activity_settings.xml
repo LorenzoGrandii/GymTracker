@@ -135,17 +135,16 @@
                 android:paddingBottom="2dp"
                 android:layout_above="@id/copyright"
                 android:layout_toEndOf="@id/change_account"
-                android:text="@string/signup"
+                android:text="@string/exit"
                 android:textColor="@color/color1"
                 android:textSize="@dimen/text_low_size"
                 android:clickable="true"
                 android:focusable="true" />
         </LinearLayout>
-
-        <fragment android:id="@+id/copyright"
-            android:name="com.grandi.lorenzo.gymtracker.FragmentCopyright"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true" />
     </RelativeLayout>
+    <fragment android:id="@+id/copyright_light"
+        android:name="com.grandi.lorenzo.gymtracker.FragmentCopyrightLight"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" />
 </RelativeLayout>
