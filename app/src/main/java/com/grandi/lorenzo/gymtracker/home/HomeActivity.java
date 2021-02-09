@@ -9,6 +9,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
@@ -46,10 +47,10 @@ public class HomeActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        if (preferenceLoader(this).getBoolean(loggedKey.getValue(), false)) {
+        if (preferenceLoaderLogin().getBoolean(loggedKey.getValue(), false)) {
             registerLogin();
 
-            preferenceLoader(this);
+            preferenceLoaderLogin();
             initViewComponents(this);
             initTaskComponents();
             preferenceSaver(this);
@@ -67,12 +68,13 @@ public class HomeActivity extends FragmentActivity {
         finishAffinity();
     }
 
-    private SharedPreferences preferenceLoader(Activity activity) {
-        SharedPreferences sharedPreferences;
-        sharedPreferences = activity.getSharedPreferences(LOGIN_PREFERENCE_FILE.getValue(), MODE_PRIVATE);
-
-        return sharedPreferences;
+    private SharedPreferences preferenceLoaderLogin() {
+        return this.getSharedPreferences(LOGIN_PREFERENCE_FILE.getValue(), MODE_PRIVATE);
     }
+    private SharedPreferences preferencesLoaderSettings() {
+        return this.getSharedPreferences(SETTINGS_PREFERENCE_FILE.getValue(), MODE_PRIVATE);
+    }
+
     private void preferenceSaver(Activity activity) {
         SharedPreferences sharedPreferences;
         sharedPreferences = activity.getSharedPreferences(LOGIN_PREFERENCE_FILE.getValue(), MODE_PRIVATE);
@@ -115,15 +117,11 @@ public class HomeActivity extends FragmentActivity {
             new FlagList(intent);
             startActivity(intent);
         });
-
-        switch (preferenceLoader(this).getString(colorKey.getValue(), "blue")) {
-            // color switching
-        }
     }
     private void initTaskComponents() {
         this.tv_date.setText((new CalendarHandler()).getDate());
-        this.name = preferenceLoader(this).getString(nameKey.getValue(), nameKey.getValue());
-        this.training = preferenceLoader(this).getBoolean(trainingKey.getValue(), false);
+        this.name = preferenceLoaderLogin().getString(nameKey.getValue(), nameKey.getValue());
+        this.training = preferenceLoaderLogin().getBoolean(trainingKey.getValue(), false);
 
         if (!this.name.isEmpty() && !this.name.equals(nameKey.getValue())) this.tv_name.setText(this.name);
     }
@@ -139,7 +137,7 @@ public class HomeActivity extends FragmentActivity {
 
     private void registerLogin() {
         String name, date, registration;
-        name = this.preferenceLoader(this).getString(nameKey.getValue(), nameKey.getValue());
+        name = this.preferenceLoaderLogin().getString(nameKey.getValue(), nameKey.getValue());
         date = new CalendarHandler().getDateComplete();
         registration = " > " + name + " logged in ---\t" + date + "\n";
         try {
@@ -173,7 +171,7 @@ public class HomeActivity extends FragmentActivity {
             return registrations;
         } catch (Exception e) {
             e.printStackTrace();
-            Log.e("Failed loading files", "");
+            Log.e("Failed loading files", "!!!");
         }
         return "";
     }
