@@ -38,6 +38,7 @@
     <string name="save">save</string>
     <string name="reset">Reset</string>
     <string name="reset_account">Would you change account?</string>
+    <string name="exit">Exit</string>
     <string-array name="color_array">
         <item>Blue</item>
         <item>Green</item>
