@@ -36,6 +36,8 @@
     <string name="temperature_switch">Temperature</string>
     <string name="step_counter_switch">Step Counter</string>
     <string name="save">save</string>
+    <string name="reset">Reset</string>
+    <string name="reset_account">Would you change account?</string>
     <string-array name="color_array">
         <item>Blue</item>
         <item>Green</item>
