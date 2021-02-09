@@ -48,4 +48,8 @@
     <style name="Theme.GymTracker.CalendarViewWeekCustomText" parent="android:TextAppearance.DeviceDefault.Small">
         <item name="android:textColor">@color/blackLowOpacity</item>
     </style>
+    <style name="SettingsSwitch" parent="Theme.AppCompat.Light">
+        <item name="colorControlActivated">#0288D1</item>
+        <item name="android:colorControlHighlight">#0288D1</item>
+    </style>
 </resources>

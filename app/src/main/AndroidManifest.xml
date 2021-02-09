@@ -6,8 +6,6 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.hardware.camera.autofocus" />
 
-    <uses-permission-sdk-23 android:name="android.permission.CAMERA" />
-
     <uses-permission android:name="android.permission.FLASHLIGHT" />
 
     <application
@@ -17,25 +15,25 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GymTracker">
-        <activity android:name=".taskactivity.SettingsActivity"></activity>
-        <activity android:name=".taskactivity.ProfileActivity" />
+        <activity android:name=".taskactivity.SettingsActivity" android:theme="@style/Theme.GymTracker.task"/>
+        <activity android:name=".taskactivity.ProfileActivity" android:theme="@style/Theme.GymTracker.task" />
         <activity
             android:name=".scanner.ScannerActivity"
             android:parentActivityName=".home.HomeActivity"
             android:theme="@style/Theme.GymTracker.task" />
         <activity
             android:name=".home.HomeActivity"
-            android:theme="@style/Theme.GymTracker.home" />
-        <activity android:name=".login.LoginActivity" />
-        <activity
-            android:name=".main.MainActivity"
-            android:theme="@style/Theme.GymTracker.home">
+            android:theme="@style/Theme.GymTracker.home" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".login.LoginActivity" />
+        <activity
+            android:name=".main.MainActivity"
+            android:theme="@style/Theme.GymTracker.home"/>
 
         <meta-data
             android:name="com.google.android.gms.vision.DEPENDENCIES"

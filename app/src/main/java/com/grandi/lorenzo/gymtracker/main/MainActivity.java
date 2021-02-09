@@ -48,40 +48,34 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         initViewComponents(this);
-
-        if (preferenceLoader(this)) {
-            Intent intent = new Intent(this, HomeActivity.class);
+        b_signin.setOnClickListener(v -> {
+            v.setPressed(true);
+            Intent intent = new Intent(this, LoginActivity.class);
             new FlagList(intent);
+            intent.putExtra(EXTRA_ACCOUNT.getValue(), true);
             startActivity(intent);
-        } else {
-            b_signin.setOnClickListener(v -> {
-                v.setPressed(true);
-                Intent intent = new Intent(this, LoginActivity.class);
-                new FlagList(intent);
-                intent.putExtra(EXTRA_ACCOUNT.getValue(), true);
-                startActivity(intent);
-            });
-            b_signup.setOnClickListener(v -> {
-                b_signup.setTextColor(getColor(R.color.white));
-                Intent intent = new Intent(this, LoginActivity.class);
-                new FlagList(intent);
-                intent.putExtra(EXTRA_ACCOUNT.getValue(), false);
-                startActivity(intent);
-            });
+        });
+        b_signup.setOnClickListener(v -> {
+            b_signup.setTextColor(getColor(R.color.white));
+            Intent intent = new Intent(this, LoginActivity.class);
+            new FlagList(intent);
+            intent.putExtra(EXTRA_ACCOUNT.getValue(), false);
+            startActivity(intent);
+        });
 
-            b_signin.setOnLongClickListener(v -> {
-                v.setPressed(true);
-                Toast.makeText(MainActivity.this, getString(R.string.signin_hint), Toast.LENGTH_SHORT).show();
-                return false;
-            });
-            b_signup.setOnLongClickListener(v -> {
-                b_signup.setTextColor(getColor(R.color.white));
-                Toast.makeText(MainActivity.this, getString(R.string.signup_hint), Toast.LENGTH_SHORT).show();
-                isSpeakButtonLongPressed = true;
-                return true;
-            });
-            b_signup.setOnTouchListener(speakTouchListener);
-        }
+        b_signin.setOnLongClickListener(v -> {
+            v.setPressed(true);
+            Toast.makeText(MainActivity.this, getString(R.string.signin_hint), Toast.LENGTH_SHORT).show();
+            return false;
+        });
+        b_signup.setOnLongClickListener(v -> {
+            b_signup.setTextColor(getColor(R.color.white));
+            Toast.makeText(MainActivity.this, getString(R.string.signup_hint), Toast.LENGTH_SHORT).show();
+            isSpeakButtonLongPressed = true;
+            return true;
+        });
+        b_signup.setOnTouchListener(speakTouchListener);
+
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -114,10 +108,6 @@ public class MainActivity extends AppCompatActivity {
         return false;
     };
 
-    private boolean preferenceLoader(Activity activity) {
-        SharedPreferences sharedPreferences = activity.getSharedPreferences(LOGIN_PREFERENCE_FILE.getValue(), MODE_PRIVATE);
-        return sharedPreferences.getBoolean(loggedKey.getValue(), false);
-    }
     private void initViewComponents (Activity activity) {
         this.b_signup = findViewById(R.id.b_signup);
         this.b_signup.setTextColor(getColor(R.color.color1));

@@ -30,4 +30,21 @@
     <string name="scanner">Scanner</string>
     <string name="keyInput">Insert the key</string>
     <string name="profile">Profile</string>
+    <string name="color_picker">App Color</string>
+    <string name="app_color">App Color</string>
+    <string name="dark_switch">Dark Mode</string>
+    <string name="temperature_switch">Temperature</string>
+    <string name="step_counter_switch">Step Counter</string>
+    <string name="save">save</string>
+    <string name="reset">Reset</string>
+    <string name="reset_account">Would you change account?</string>
+    <string name="exit">Exit</string>
+    <string name="gym_temperature">Temperature received : </string>
+    <string name="step_counter">Step counted :</string>
+    <string name="calendar">Calendar</string>
+    <string-array name="color_array">
+        <item>Blue</item>
+        <item>Green</item>
+        <item>Orange</item>
+    </string-array>
 </resources>

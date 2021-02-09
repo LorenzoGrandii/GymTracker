@@ -5,11 +5,13 @@ public enum KeyLoader {
     LOGIN_PREFERENCE_FILE ("com.grandi.lorenzo.gymtracker.loginPreference"),
     SETTINGS_PREFERENCE_FILE("com.grandi.lorenzo.gymtracker.settingsPreference"),
     emailKey ("emailKey"),
-    accountIdKey ("accountIdKey"),
     nameKey ("nameKey"),
     passwordKey ("passwordKey"),
     loggedKey ("loggedKey"),
     trainingKey ("trainingKey"),
+    colorKey ("colorKey"),
+    temperatureKey ("temperatureKey"),
+    stepCounterKey ("stepCounterKey"),
 
     /*======================================= FILE STRINGS =======================================*/
     REGISTRATION_FILE ("personal_backup"),

@@ -40,10 +40,50 @@
         android:gravity="center"
         android:layout_margin="@dimen/default_margin"
         android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/button_margin"
+            android:layout_marginStart="@dimen/button_margin">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/default_margin"
+                android:text="@string/gym_temperature" />
+            <TextView android:id="@+id/tv_temperature"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/default_margin"
+                android:textColor="@color/colorPrimaryDark"
+                android:fontFamily="@font/helvetica_bold"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginStart="@dimen/button_margin">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/default_margin"
+                android:text="@string/step_counter" />
+            <TextView android:id="@+id/tv_step_counter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/default_margin"
+                android:textColor="@color/colorPrimaryDark"
+                android:fontFamily="@font/helvetica_bold" />
+        </LinearLayout>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:text="@string/calendar"
+            android:textColor="@color/colorPrimaryDark"
+            android:gravity="bottom|center_horizontal"
+            android:layout_weight="10"
+            android:textFontWeight="1000"
+            android:textSize="22sp" />
         <CalendarView android:id="@+id/calendar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
