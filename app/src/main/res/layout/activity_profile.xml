@@ -40,10 +40,12 @@
         android:gravity="center"
         android:layout_margin="@dimen/default_margin"
         android:orientation="vertical">
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="10">
+
+        </LinearLayout>
         <CalendarView android:id="@+id/calendar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
