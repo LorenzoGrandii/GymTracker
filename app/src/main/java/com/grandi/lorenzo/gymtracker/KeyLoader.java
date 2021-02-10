@@ -17,11 +17,10 @@ public enum KeyLoader {
     REGISTRATION_FILE ("personal_backup"),
 
     /*====================================== QRCODE STRINGS ======================================*/
-    strQRFlag (""),
+    strQRFlag ("GymTracker"),
 
     /*======================================= EXTRAS KEYS ========================================*/
-    EXTRA_ACCOUNT ("com.grandi.lorenzo.gymtracker.ACCOUNT"),
-    EXTRA_TASK_SELECTOR ("com.grandi.lorenzo.gymtracker.TASK_SELECTOR");
+    EXTRA_ACCOUNT ("com.grandi.lorenzo.gymtracker.ACCOUNT");
 
     /*======================================= CONSTRUCTOR ========================================*/
     private final String value;
