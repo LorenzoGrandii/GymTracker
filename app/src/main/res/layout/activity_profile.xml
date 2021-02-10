@@ -98,19 +98,10 @@
                 android:textColor="@color/colorPrimaryDark"
                 android:fontFamily="@font/helvetica_bold" />
         </LinearLayout>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/calendar"
-            android:textColor="@color/colorPrimaryDark"
-            android:gravity="bottom|center_horizontal"
-            android:layout_weight="10"
-            android:textFontWeight="1000"
-            android:textSize="22sp" />
         <CalendarView android:id="@+id/calendar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_marginTop="@dimen/scanner_container_margin_top"
             android:dateTextAppearance="@style/Theme.GymTracker.CalendarViewDayCustomText"
             android:weekDayTextAppearance="@style/Theme.GymTracker.CalendarViewWeekCustomText"
             android:focusedMonthDateColor="@color/color1"
