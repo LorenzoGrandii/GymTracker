@@ -35,14 +35,18 @@
     <string name="dark_switch">Dark Mode</string>
     <string name="temperature_switch">Temperature</string>
     <string name="step_counter_switch">Step Counter</string>
+    <string name="humidity_switch">Humidity</string>
     <string name="save">save</string>
     <string name="reset">Reset</string>
     <string name="reset_account">Would you change account?</string>
     <string name="exit">Exit</string>
     <string name="gym_temperature">Temperature :</string>
     <string name="step_counter">Step counted :</string>
+    <string name="humidity">Humidity :</string>
     <string name="calendar">Calendar</string>
+    <string name="sensor_not_available">Not available</string>
     <string name="sensor_disabled">Sensor disabled</string>
+    <string name="settings_saved">Settings Saved</string>
     <string-array name="color_array">
         <item>Blue</item>
         <item>Green</item>

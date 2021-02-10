@@ -11,6 +11,7 @@ public enum KeyLoader {
     trainingKey ("trainingKey"),
     temperatureKey ("temperatureKey"),
     stepCounterKey ("stepCounterKey"),
+    humidityKey ("humidityKey"),
 
     /*======================================= FILE STRINGS =======================================*/
     REGISTRATION_FILE ("personal_backup"),
