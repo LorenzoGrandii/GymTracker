@@ -37,7 +37,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/header_training"
-        android:gravity="center"
         android:layout_margin="@dimen/default_margin"
         android:orientation="vertical">
         <LinearLayout
@@ -98,13 +97,11 @@
                 android:textColor="@color/colorPrimaryDark"
                 android:fontFamily="@font/helvetica_bold" />
         </LinearLayout>
-        <CalendarView android:id="@+id/calendar"
+        <ScrollView android:id="@+id/sv_file"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/scanner_container_margin_top"
-            android:dateTextAppearance="@style/Theme.GymTracker.CalendarViewDayCustomText"
-            android:weekDayTextAppearance="@style/Theme.GymTracker.CalendarViewWeekCustomText"
-            android:focusedMonthDateColor="@color/color1"
-            android:selectedWeekBackgroundColor="@color/colorAccentLowOpacity" />
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/margin_date_top"
+            android:theme="@style/FontFamily">
+        </ScrollView>
     </LinearLayout>
 </RelativeLayout>

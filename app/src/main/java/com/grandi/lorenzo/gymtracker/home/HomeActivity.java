@@ -48,8 +48,6 @@ public class HomeActivity extends FragmentActivity {
         setContentView(R.layout.activity_home);
 
         if (preferenceLoaderLogin().getBoolean(loggedKey.getValue(), false)) {
-            registerLogin();
-
             preferenceLoaderLogin();
             initViewComponents(this);
             initTaskComponents();
@@ -60,19 +58,14 @@ public class HomeActivity extends FragmentActivity {
             startActivity(intent);
         }
     }
-
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        sendEmail();
         finishAffinity();
     }
 
     private SharedPreferences preferenceLoaderLogin() {
         return this.getSharedPreferences(LOGIN_PREFERENCE_FILE.getValue(), MODE_PRIVATE);
-    }
-    private SharedPreferences preferencesLoaderSettings() {
-        return this.getSharedPreferences(SETTINGS_PREFERENCE_FILE.getValue(), MODE_PRIVATE);
     }
 
     private void preferenceSaver(Activity activity) {
@@ -135,19 +128,6 @@ public class HomeActivity extends FragmentActivity {
             this.ib_scanner.setBackground(getDrawable(R.drawable.button_scanner_enter));
     }
 
-    private void registerLogin() {
-        String name, date, registration;
-        name = this.preferenceLoaderLogin().getString(nameKey.getValue(), nameKey.getValue());
-        date = new CalendarHandler().getDateComplete();
-        registration = " > " + name + " logged in ---\t" + date + "\n";
-        try {
-            FileOutputStream registerFile = openFileOutput(this.getFilesDir().getName().concat(REGISTRATION_FILE.getValue()), MODE_PRIVATE);
-            registerFile.write(registration.getBytes());
-            registerFile.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     private String readSavesAtOpen() {
         String registrations;
@@ -174,27 +154,5 @@ public class HomeActivity extends FragmentActivity {
             Log.e("Failed loading files", "!!!");
         }
         return "";
-    }
-
-    @SuppressLint({"IntentReset", "QueryPermissionsNeeded"})
-    private void sendEmail() {
-        // TODO: email registration fix
-
-        String registrations = readSavesAtOpen();
-        if (!registrations.isEmpty()) {
-            Uri uri = Uri.parse("mailto:roretsuno98@gmail.com")
-                    .buildUpon()
-                    .appendQueryParameter("subject", "registration event")
-                    .appendQueryParameter("body", registrations)
-                    .build();
-            Intent emailIntent = new Intent(Intent.ACTION_SENDTO,uri);
-
-
-            if (emailIntent.resolveActivity(getPackageManager()) != null) {
-                startActivity(emailIntent);
-                Log.e("Email sending : ", "done");
-            } else
-                Log.e("Email sending failed", "");
-        }
     }
 }

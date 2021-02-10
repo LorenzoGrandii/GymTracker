@@ -52,4 +52,9 @@
         <item name="colorControlActivated">#0288D1</item>
         <item name="android:colorControlHighlight">#0288D1</item>
     </style>
+    <style name="FontFamily">
+        <item name="fontFamily">@font/helvetica_bold</item>
+        <item name="color">@color/black</item>
+        <item name="android:textSize">@dimen/text_size</item>
+    </style>
 </resources>

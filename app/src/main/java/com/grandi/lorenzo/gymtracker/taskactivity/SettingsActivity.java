@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
@@ -19,6 +20,12 @@ import com.grandi.lorenzo.gymtracker.FlagList;
 import com.grandi.lorenzo.gymtracker.R;
 import com.grandi.lorenzo.gymtracker.home.HomeActivity;
 import com.grandi.lorenzo.gymtracker.main.MainActivity;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 import static com.grandi.lorenzo.gymtracker.KeyLoader.*;
 
@@ -87,6 +94,9 @@ public class SettingsActivity extends AppCompatActivity {
             SharedPreferences.Editor editor_settings = getSharedPreferences(SETTINGS_PREFERENCE_FILE.getValue(), MODE_PRIVATE).edit();
             editor_settings.clear();
             editor_settings.apply();
+            File eventRegister = new File(this.getFilesDir().getName().concat(REGISTRATION_FILE.getValue()));
+            eventRegister.delete();
+
             Intent intent = new Intent(this, MainActivity.class);
             new FlagList(intent);
             startActivity(intent);
