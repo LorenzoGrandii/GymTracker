@@ -42,6 +42,7 @@
     <string name="gym_temperature">Temperature received : </string>
     <string name="step_counter">Step counted :</string>
     <string name="calendar">Calendar</string>
+    <string name="available">Not Available</string>
     <string-array name="color_array">
         <item>Blue</item>
         <item>Green</item>
