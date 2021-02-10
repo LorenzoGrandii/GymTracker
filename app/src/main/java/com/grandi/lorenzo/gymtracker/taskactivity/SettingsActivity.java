@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
@@ -22,10 +21,6 @@ import com.grandi.lorenzo.gymtracker.home.HomeActivity;
 import com.grandi.lorenzo.gymtracker.main.MainActivity;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 
 import static com.grandi.lorenzo.gymtracker.KeyLoader.*;
 

@@ -4,12 +4,10 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageButton;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
@@ -17,7 +15,6 @@ import androidx.fragment.app.FragmentActivity;
 
 import com.grandi.lorenzo.gymtracker.FlagList;
 import com.grandi.lorenzo.gymtracker.R;
-import com.grandi.lorenzo.gymtracker.login.LoginActivity;
 import com.grandi.lorenzo.gymtracker.main.MainActivity;
 import com.grandi.lorenzo.gymtracker.taskactivity.SettingsActivity;
 import com.grandi.lorenzo.gymtracker.scanner.ScannerActivity;
@@ -26,7 +23,6 @@ import com.grandi.lorenzo.gymtracker.task.CalendarHandler;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
