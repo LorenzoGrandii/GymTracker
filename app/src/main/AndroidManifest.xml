@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GymTracker">
         <activity android:name=".taskactivity.SettingsActivity" android:theme="@style/Theme.GymTracker.task"/>
-        <activity android:name=".taskactivity.ProfileActivity" android:theme="@style/Theme.GymTracker.task" />
+        <activity android:name=".taskactivity.ProfileActivity" android:theme="@style/Theme.GymTracker.task"/>
         <activity
             android:name=".scanner.ScannerActivity"
             android:parentActivityName=".home.HomeActivity"

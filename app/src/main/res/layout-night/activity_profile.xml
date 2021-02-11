@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".taskactivity.ProfileActivity"
+    android:background="@color/colorPrimary">
+    <TextView android:id="@+id/tv_date_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_date"
+        android:layout_marginTop="@dimen/margin_date_top"
+        android:layout_alignParentEnd="true"
+        android:textColor="@color/white_low_opacity"
+        android:fontFamily="@font/helvetica_bold"
+        android:textSize="@dimen/text_low_size"/>
+    <LinearLayout android:id="@+id/header_training"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        android:orientation="horizontal"
+        android:gravity="center_vertical|end">
+        <TextView android:id="@+id/profile_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/title_margin"
+            android:layout_marginBottom="@dimen/title_margin"
+            android:text="@string/training"
+            android:textColor="@color/white"
+            android:letterSpacing="-0.03"
+            android:textFontWeight="1000"
+            android:textSize="@dimen/title_text_size"
+            android:fontFamily="@font/helvetica_bold"
+            android:layout_marginEnd="@dimen/title_margin_right" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/header_training"
+        android:layout_margin="@dimen/default_margin"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/button_margin"
+            android:layout_marginStart="@dimen/button_margin">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/default_margin"
+                android:text="@string/gym_temperature" />
+            <TextView android:id="@+id/tv_temperature"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/scanner_container_margin_top"
+                android:layout_gravity="center_vertical"
+                android:gravity="end"
+                android:textColor="@color/color1"
+                android:fontFamily="@font/helvetica_bold"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginStart="@dimen/button_margin">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/default_margin"
+                android:text="@string/step_counter" />
+            <TextView android:id="@+id/tv_step_counter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="end"
+                android:layout_marginEnd="@dimen/scanner_container_margin_top"
+                android:textColor="@color/color1"
+                android:fontFamily="@font/helvetica_bold" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginStart="@dimen/button_margin">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/default_margin"
+                android:text="@string/humidity" />
+            <TextView android:id="@+id/tv_humidity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="end"
+                android:layout_marginEnd="@dimen/scanner_container_margin_top"
+                android:textColor="@color/color1"
+                android:fontFamily="@font/helvetica_bold" />
+        </LinearLayout>
+        <ScrollView android:id="@+id/sv_file"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/margin_date_top"
+            android:theme="@style/FontFamily"
+            android:background="@color/white_low_opacity"
+            android:padding="@dimen/margin_date_top">
+        </ScrollView>
+    </LinearLayout>
+</RelativeLayout>

@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!--<color name="">#000000</color>
-    <color name ="">#000099</color>
-    <color name=""> #000066</color>
-    <color name="">#ffffff</color>
-    <color name="">#e6e6ff</color>
-    <color name="">#cc0000</color>
-    <color name="">#990000</color>
-    <color name="">#004d00</color>
-    <color name="">#e68a00</color>
--->
+    <color name="colorPrimary">#0D47A1</color>
+    <color name="colorPrimaryLowOpacity">#770D47A1</color>
+    <color name="colorAccentLowOpacity">#775eb8ff</color>
+    <color name="colorAccent">#ddd</color>
+    <color name="colorPrimaryDark">#002171</color>
+    <color name="black">#eee</color>
+    <color name="white">#eee</color>
+    <color name="color1">#FF5252</color>
+    <color name="colorButtonEnter">#00C853</color>
+    <color name="colorButtonEnterDark">#bb00C853</color>
+    <color name="white_low_opacity">#afff</color>
+    <color name="blackLowOpacity">#7000</color>
+    <color name="colorButtonExit">#FF5252</color>
+    <color name="colorButtonExitDark">#ff7961</color>
+    <color name="button_pressed">#bfff</color>
+    <color name="button_hovered">#e6ffff</color>
 </resources>

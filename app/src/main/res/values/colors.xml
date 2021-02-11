@@ -3,19 +3,17 @@
     <color name="colorPrimary">#0288D1</color>
     <color name="colorPrimaryLowOpacity">#770288D1</color>
     <color name="colorAccent">#eee</color>
+    <color name="colorAccentLowOpacity">#775eb8ff</color>
     <color name="colorPrimaryDark">#00589b</color>
     <color name="black">#222</color>
     <color name="white">#eee</color>
     <color name="color1">#cf5c78</color>
     <color name="colorButtonEnter">#00C853</color>
+    <color name="colorButtonEnterDark">#bb00C853</color>
     <color name="white_low_opacity">#afff</color>
     <color name="blackLowOpacity">#7000</color>
     <color name="colorButtonExit">#FF5252</color>
+    <color name="colorButtonExitDark">#ff7961</color>
     <color name="button_pressed">#bfff</color>
     <color name="button_hovered">#e6ffff</color>
-    <color name="colorButtonExitDark">#ff7961</color>
-    <color name="colorButtonEnterDark">#bb00C853</color>
-    <color name="colorAccentLowOpacity">#775eb8ff</color>
-    <color name="orange">#FF9100</color>
-    <color name="green">#76FF03</color>
 </resources>

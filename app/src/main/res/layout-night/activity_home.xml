@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_vertical"
@@ -83,7 +84,8 @@
                 android:layout_weight="3"
                 android:orientation="horizontal"
                 android:gravity="center_horizontal|bottom"
-                android:padding="@dimen/button_home_margin">
+                android:padding="@dimen/button_home_margin"
+                tools:ignore="NestedWeights">
                 <ImageButton android:id="@+id/profile_opener"
                     android:contentDescription="@string/button"
                     android:layout_width="@dimen/button_home_size"

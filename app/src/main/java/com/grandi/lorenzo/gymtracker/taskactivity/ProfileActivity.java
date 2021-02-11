@@ -1,7 +1,6 @@
 package com.grandi.lorenzo.gymtracker.taskactivity;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.hardware.Sensor;
@@ -11,8 +10,6 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -178,6 +175,7 @@ public class ProfileActivity extends AppCompatActivity {
             this.sv_file_reader.addView(ll_line);
         } else {
             tv_line.setText(R.string.no_registrations);
+
             tv_line.setTextColor(getColor(R.color.colorButtonExit));
 
             LinearLayout ll_line = new LinearLayout(this);
