@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import androidx.annotation.Nullable;
@@ -20,12 +19,6 @@ import com.grandi.lorenzo.gymtracker.taskactivity.SettingsActivity;
 import com.grandi.lorenzo.gymtracker.scanner.ScannerActivity;
 import com.grandi.lorenzo.gymtracker.taskactivity.ProfileActivity;
 import com.grandi.lorenzo.gymtracker.task.CalendarHandler;
-
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
 
 import static com.grandi.lorenzo.gymtracker.KeyLoader.*;
 
@@ -122,33 +115,5 @@ public class HomeActivity extends FragmentActivity {
             this.ib_scanner.setBackground(getDrawable(R.drawable.button_scanner_exit));
         else
             this.ib_scanner.setBackground(getDrawable(R.drawable.button_scanner_enter));
-    }
-
-
-    private String readSavesAtOpen() {
-        String registrations;
-        try {
-            FileInputStream registrationStream = this.openFileInput(this.getFilesDir().getName().concat(REGISTRATION_FILE.getValue()));
-            InputStreamReader inputStreamReader = new InputStreamReader(registrationStream, StandardCharsets.UTF_8);
-            StringBuilder stringBuilder = new StringBuilder();
-            try (BufferedReader reader = new BufferedReader(inputStreamReader)){
-                String line = reader.readLine();
-                while (line != null) {
-                    stringBuilder.append(line).append("\n");
-                    line = reader.readLine();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            } finally {
-                registrations = stringBuilder.toString();
-                registrationStream.close();
-                inputStreamReader.close();
-            }
-            return registrations;
-        } catch (Exception e) {
-            e.printStackTrace();
-            Log.e("Failed loading files", "!!!");
-        }
-        return "";
     }
 }
