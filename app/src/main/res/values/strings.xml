@@ -44,4 +44,5 @@
     <string name="settings_saved">Settings Saved</string>
     <string name="no_registrations">No registrations found</string>
     <string name="button">button</string>
+    <string name="file_read">Your registrations</string>
 </resources>

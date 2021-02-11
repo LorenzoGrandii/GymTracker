@@ -14,7 +14,7 @@ public enum KeyLoader {
     humidityKey ("humidityKey"),
 
     /*======================================= FILE STRINGS =======================================*/
-    REGISTRATION_FILE ("personal_backup"),
+    REGISTRATION_FILE ("userRegistrations.txt"),
 
     /*====================================== QRCODE STRINGS ======================================*/
     strQRFlag ("GymTracker"),

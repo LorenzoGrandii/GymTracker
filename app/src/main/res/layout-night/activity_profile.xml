@@ -97,12 +97,20 @@
                 android:textColor="@color/color1"
                 android:fontFamily="@font/helvetica_bold" />
         </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/file_read"
+            android:textColor="@color/ic_launcher_background"
+            android:layout_marginTop="@dimen/title_margin"
+            android:layout_marginStart="@dimen/title_margin"
+            android:textSize="@dimen/subtitle_text_size"/>
         <ScrollView android:id="@+id/sv_file"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="@dimen/margin_date_top"
             android:theme="@style/FontFamily"
-            android:background="@color/white_low_opacity"
+            android:background="@color/white"
             android:padding="@dimen/margin_date_top">
         </ScrollView>
     </LinearLayout>

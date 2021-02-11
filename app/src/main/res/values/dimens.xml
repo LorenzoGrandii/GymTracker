@@ -53,6 +53,7 @@
     <dimen name="switch_dark">48dp</dimen>
     <dimen name="margin_settings_buttons">128dp</dimen>
     <dimen name="home_top_margin">100dp</dimen>
+    <dimen name="subtitle_text_size">22sp</dimen>
 
 
 </resources>
