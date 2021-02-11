@@ -2,6 +2,8 @@ package com.grandi.lorenzo.gymtracker.taskactivity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.hardware.Sensor;
@@ -9,14 +11,17 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.grandi.lorenzo.gymtracker.R;
 import com.grandi.lorenzo.gymtracker.task.CalendarHandler;
+import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import static com.grandi.lorenzo.gymtracker.KeyLoader.*;
 
 public class ProfileActivity extends AppCompatActivity {
+
 
     private TextView tv_profile_date, tv_temperature, tv_step_counter,tv_humidity;
     private SensorManager sensorManager;
@@ -27,11 +32,17 @@ public class ProfileActivity extends AppCompatActivity {
 
     private boolean is_temperature_enabled, is_step_counter_enabled, is_humidity_enabled;
 
+    @SuppressLint("CheckResult")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-
+        final RxPermissions rxPermissions = new RxPermissions(this);
+        new RxPermissions(this).request(Manifest.permission.ACTIVITY_RECOGNITION)
+                .subscribe(granted ->{
+            if(granted)
+                Log.d("TAG", "Is ACTIVITY_RECOGNITION permission granted: $isGranted");
+        });
         initViewComponents();
         initTaskComponents();
     }
