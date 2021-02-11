@@ -30,7 +30,6 @@ public class SettingsActivity extends AppCompatActivity {
     private boolean isSpeakButtonLongPressed = false;
 
     private SwitchCompat sc_temperature, sc_stepCounter, sc_humidity;
-    private boolean temperature_enabled, stepcounter_enabled, humidity_enabled;
     private Button b_save, b_reset;
     private TextView exit;
 
@@ -56,9 +55,9 @@ public class SettingsActivity extends AppCompatActivity {
     private void preferenceSaver() {
         SharedPreferences.Editor editor = preferencesLoader().edit();
         // TODO: save all preferences used
-        editor.putBoolean(temperatureKey.getValue(), this.temperature_enabled);
-        editor.putBoolean(stepCounterKey.getValue(), this.stepcounter_enabled);
-        editor.putBoolean(humidityKey.getValue(), this.humidity_enabled);
+        editor.putBoolean(temperatureKey.getValue(), this.sc_temperature.isChecked());
+        editor.putBoolean(stepCounterKey.getValue(), this.sc_stepCounter.isChecked());
+        editor.putBoolean(humidityKey.getValue(), this.sc_humidity.isChecked());
 
         editor.apply();
     }
@@ -73,15 +72,28 @@ public class SettingsActivity extends AppCompatActivity {
         this.b_reset = findViewById(R.id.b_settings_reset);
         this.exit = findViewById(R.id.b_exit);
 
-        this.sc_temperature.setChecked(preferencesLoader().getBoolean(temperatureKey.getValue(), true));
-        this.sc_stepCounter.setChecked(preferencesLoader().getBoolean(stepCounterKey.getValue(), true));
+        this.sc_temperature.setChecked(preferencesLoader().getBoolean(temperatureKey.getValue(), false));
+        this.sc_stepCounter.setChecked(preferencesLoader().getBoolean(stepCounterKey.getValue(), false));
         this.sc_humidity.setChecked(preferencesLoader().getBoolean(humidityKey.getValue(), false));
     }
     @SuppressLint("ClickableViewAccessibility")
     private void initTaskComponents() {
         // TODO: initialization for all task components
 
-        switchChecker();
+        b_save.setOnClickListener(v -> {
+            this.preferenceSaver();
+            Toast.makeText(this, getString(R.string.settings_saved), Toast.LENGTH_SHORT).show();
+        });
+        b_reset.setOnClickListener(v -> {
+            SharedPreferences.Editor editor = preferencesLoader().edit();
+            editor.remove(temperatureKey.getValue());
+            editor.remove(stepCounterKey.getValue());
+            editor.remove(humidityKey.getValue());
+            editor.apply();
+            this.sc_stepCounter.setChecked(false);
+            this.sc_temperature.setChecked(false);
+            this.sc_humidity.setChecked(false);
+        });
         this.exit.setOnClickListener(v -> {
             SharedPreferences.Editor editor_login = getSharedPreferences(LOGIN_PREFERENCE_FILE.getValue(), MODE_PRIVATE).edit();
             editor_login.clear();
@@ -97,20 +109,6 @@ public class SettingsActivity extends AppCompatActivity {
             startActivity(intent);
         });
         this.exit.setOnTouchListener(speakTouchListener);
-
-        b_save.setOnClickListener(v -> {
-            this.preferenceSaver();
-            Toast.makeText(this, getString(R.string.settings_saved), Toast.LENGTH_SHORT).show();
-        });
-        b_reset.setOnClickListener(v -> {
-            SharedPreferences.Editor editor = preferencesLoader().edit();
-            editor.remove(temperatureKey.getValue());
-            editor.remove(stepCounterKey.getValue());
-            editor.apply();
-            this.sc_stepCounter.setChecked(true);
-            this.sc_temperature.setChecked(true);
-            this.sc_humidity.setChecked(true);
-        });
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -124,16 +122,4 @@ public class SettingsActivity extends AppCompatActivity {
         }
         return false;
     };
-
-    private void switchChecker() {
-        this.sc_temperature.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            temperature_enabled = isChecked;
-        });
-        this.sc_stepCounter.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            stepcounter_enabled = isChecked;
-        });
-        this.sc_humidity.setOnCheckedChangeListener(((buttonView, isChecked) -> {
-            humidity_enabled = isChecked;
-        }));
-    }
 }

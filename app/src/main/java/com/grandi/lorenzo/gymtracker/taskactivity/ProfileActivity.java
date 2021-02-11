@@ -87,8 +87,8 @@ public class ProfileActivity extends AppCompatActivity {
 
     private void initTaskComponents() {
         this.tv_profile_date.setText(new CalendarHandler().getDate());
-        this.is_temperature_enabled = preferenceLoader().getBoolean(stepCounterKey.getValue(), false);
-        this.is_step_counter_enabled = preferenceLoader().getBoolean(temperatureKey.getValue(), false);
+        this.is_temperature_enabled = preferenceLoader().getBoolean(temperatureKey.getValue(), false);
+        this.is_step_counter_enabled = preferenceLoader().getBoolean(stepCounterKey.getValue(), false);
         this.is_humidity_enabled = preferenceLoader().getBoolean(humidityKey.getValue(), false);
 
         this.sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
