@@ -5,13 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.ActivityNotFoundException;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -19,21 +15,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.grandi.lorenzo.gymtracker.FlagList;
-import com.grandi.lorenzo.gymtracker.home.HomeActivity;
 import com.grandi.lorenzo.gymtracker.R;
 import com.grandi.lorenzo.gymtracker.login.LoginActivity;
-
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
 
 import static com.grandi.lorenzo.gymtracker.KeyLoader.*;
 
 @RequiresApi(api = Build.VERSION_CODES.M)
-public class MainActivity extends AppCompatActivity {
+public class StarterActivity extends AppCompatActivity {
 
     private boolean isSpeakButtonLongPressed = false;
 
@@ -65,12 +53,12 @@ public class MainActivity extends AppCompatActivity {
 
         b_signin.setOnLongClickListener(v -> {
             v.setPressed(true);
-            Toast.makeText(MainActivity.this, getString(R.string.signin_hint), Toast.LENGTH_SHORT).show();
+            Toast.makeText(StarterActivity.this, getString(R.string.signin_hint), Toast.LENGTH_SHORT).show();
             return false;
         });
         b_signup.setOnLongClickListener(v -> {
             b_signup.setTextColor(getColor(R.color.white));
-            Toast.makeText(MainActivity.this, getString(R.string.signup_hint), Toast.LENGTH_SHORT).show();
+            Toast.makeText(StarterActivity.this, getString(R.string.signup_hint), Toast.LENGTH_SHORT).show();
             isSpeakButtonLongPressed = true;
             return true;
         });

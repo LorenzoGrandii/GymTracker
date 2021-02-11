@@ -18,7 +18,7 @@ import android.widget.Toast;
 import com.grandi.lorenzo.gymtracker.FlagList;
 import com.grandi.lorenzo.gymtracker.R;
 import com.grandi.lorenzo.gymtracker.home.HomeActivity;
-import com.grandi.lorenzo.gymtracker.main.MainActivity;
+import com.grandi.lorenzo.gymtracker.main.StarterActivity;
 
 import java.io.File;
 
@@ -92,7 +92,7 @@ public class SettingsActivity extends AppCompatActivity {
             File eventRegister = new File(this.getFilesDir().getName().concat(REGISTRATION_FILE.getValue()));
             eventRegister.delete();
 
-            Intent intent = new Intent(this, MainActivity.class);
+            Intent intent = new Intent(this, StarterActivity.class);
             new FlagList(intent);
             startActivity(intent);
         });

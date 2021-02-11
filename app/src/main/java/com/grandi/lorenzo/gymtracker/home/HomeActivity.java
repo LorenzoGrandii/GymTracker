@@ -14,7 +14,7 @@ import androidx.fragment.app.FragmentActivity;
 
 import com.grandi.lorenzo.gymtracker.FlagList;
 import com.grandi.lorenzo.gymtracker.R;
-import com.grandi.lorenzo.gymtracker.main.MainActivity;
+import com.grandi.lorenzo.gymtracker.main.StarterActivity;
 import com.grandi.lorenzo.gymtracker.taskactivity.SettingsActivity;
 import com.grandi.lorenzo.gymtracker.scanner.ScannerActivity;
 import com.grandi.lorenzo.gymtracker.taskactivity.ProfileActivity;
@@ -42,7 +42,7 @@ public class HomeActivity extends FragmentActivity {
             initTaskComponents();
             preferenceSaver(this);
         } else {
-            Intent intent = new Intent(this, MainActivity.class);
+            Intent intent = new Intent(this, StarterActivity.class);
             new FlagList(intent);
             startActivity(intent);
         }

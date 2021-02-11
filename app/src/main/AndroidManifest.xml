@@ -32,7 +32,7 @@
         </activity>
         <activity android:name=".login.LoginActivity" />
         <activity
-            android:name=".main.MainActivity"
+            android:name=".main.StarterActivity"
             android:theme="@style/Theme.GymTracker.home"/>
 
         <meta-data
