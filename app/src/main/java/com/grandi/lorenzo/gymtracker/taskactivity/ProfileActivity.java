@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.graphics.Typeface;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -12,6 +11,8 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -169,6 +170,7 @@ public class ProfileActivity extends AppCompatActivity {
         TextView tv_line = new TextView(this);
         if (!registrations.isEmpty()) {
             tv_line.setText(registrations);
+
             LinearLayout ll_line = new LinearLayout(this);
             ll_line.setOrientation(LinearLayout.VERTICAL);
             ll_line.setGravity(Gravity.CENTER_VERTICAL);
@@ -177,6 +179,7 @@ public class ProfileActivity extends AppCompatActivity {
         } else {
             tv_line.setText(R.string.no_registrations);
             tv_line.setTextColor(getColor(R.color.colorButtonExit));
+
             LinearLayout ll_line = new LinearLayout(this);
             ll_line.setOrientation(LinearLayout.VERTICAL);
             ll_line.setGravity(Gravity.CENTER_HORIZONTAL);
