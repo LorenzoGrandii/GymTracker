@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".scanner.ScannerActivity"
     android:background="@color/white"
     android:theme="@style/Theme.GymTracker.task">
@@ -35,21 +34,13 @@
             android:fontFamily="@font/helvetica_bold"
             android:layout_marginEnd="@dimen/title_margin_right" />
     </LinearLayout>
-    <com.budiyev.android.codescanner.CodeScannerView
-        android:id="@+id/previewView"
+    <SurfaceView android:id="@+id/previewView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/header_scanner"
-        app:autoFocusButtonColor="@color/colorPrimary"
-        app:autoFocusButtonVisible="true"
-        app:flashButtonColor="@color/colorPrimary"
-        app:flashButtonVisible="true"
-        app:frameColor="@color/colorPrimary"
-        app:frameCornersSize="50dp"
-        app:frameCornersRadius="0dp"
-        app:frameAspectRatioWidth="1"
-        app:frameAspectRatioHeight="1"
-        app:frameSize="0.75"
-        app:frameThickness="2dp"
-        app:maskColor="#eee"/>
+        android:layout_centerInParent="true"
+        android:layout_marginStart="@dimen/scanner_container_margin"
+        android:layout_marginEnd="@dimen/scanner_container_margin"
+        android:layout_marginTop="@dimen/scanner_container_margin_top"
+        android:layout_marginBottom="@dimen/scanner_container_margin_top" />
 </RelativeLayout>
