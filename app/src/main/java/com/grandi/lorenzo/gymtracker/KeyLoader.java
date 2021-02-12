@@ -17,7 +17,7 @@ public enum KeyLoader {
     REGISTRATION_FILE ("userRegistrations.txt"),
 
     /*====================================== QRCODE STRINGS ======================================*/
-    strQRFlag ("gymtracker"),
+    strQRFlag (""),
 
     /*======================================= EXTRAS KEYS ========================================*/
     EXTRA_ACCOUNT ("com.grandi.lorenzo.gymtracker.ACCOUNT");
