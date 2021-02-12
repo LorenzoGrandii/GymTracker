@@ -25,6 +25,7 @@ import com.grandi.lorenzo.gymtracker.task.CalendarHandler;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.lang.reflect.Array;
 
 import static com.grandi.lorenzo.gymtracker.KeyLoader.*;
 
