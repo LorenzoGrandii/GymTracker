@@ -17,10 +17,14 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.widget.TextView;
 
+import com.budiyev.android.codescanner.CodeScanner;
+import com.budiyev.android.codescanner.CodeScannerView;
+import com.budiyev.android.codescanner.DecodeCallback;
 import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
+import com.google.zxing.Result;
 import com.grandi.lorenzo.gymtracker.R;
 import com.grandi.lorenzo.gymtracker.task.CalendarHandler;
 
@@ -32,14 +36,12 @@ import static com.grandi.lorenzo.gymtracker.KeyLoader.*;
 public class ScannerActivity extends AppCompatActivity {
 
     private boolean trainingStatus;
-    private static final int REQUEST_CAMERA_PERMISSION = 201;
 
     private TextView tv_date_scanner;
-    private SurfaceView surfaceView;
     private Context context;
 
-    private CameraSource cameraSource;
-    private BarcodeDetector barcodeDetector;
+    private CodeScanner codeScanner;
+    private CodeScannerView codeScannerView;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -52,16 +54,16 @@ public class ScannerActivity extends AppCompatActivity {
 
     @Override
     protected void onStop() {
+        super.onStop();
         preferenceSaver();
         qrCodeDispatcher();
-        super.onStop();
     }
 
     @Override
     protected void onPause() {
+        super.onPause();
         preferenceSaver();
         qrCodeDispatcher();
-        super.onPause();
     }
 
     @Override
@@ -77,6 +79,12 @@ public class ScannerActivity extends AppCompatActivity {
         super.onBackPressed();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        codeScanner.startPreview();
+    }
+
     private SharedPreferences preferenceLoader() {
         return this.getSharedPreferences(LOGIN_PREFERENCE_FILE.getValue(), MODE_PRIVATE);
     }
@@ -89,67 +97,41 @@ public class ScannerActivity extends AppCompatActivity {
 
     private void initViewComponents() {
         this.tv_date_scanner = this.findViewById(R.id.tv_date_scanner);
-        this.surfaceView = this.findViewById(R.id.previewView);
+        codeScannerView = findViewById(R.id.previewView);
     }
     private void initTaskComponents() {
         this.context = this;
         this.trainingStatus = preferenceLoader().getBoolean(trainingKey.getValue(), false);
         this.tv_date_scanner.setText((new CalendarHandler()).getDate());
-        this.cameraManager();
-    }
+        // this.cameraManager();
 
-    private void cameraManager() {
-        barcodeDetector = new BarcodeDetector.Builder(this).setBarcodeFormats(Barcode.QR_CODE).build();
-        this.cameraSource = new CameraSource.Builder(this, this.barcodeDetector).setRequestedPreviewSize(1920, 1080).setAutoFocusEnabled(true).build();
-        surfaceView.getHolder().addCallback(new SurfaceHolder.Callback() {
+        codeScanner = new CodeScanner(this, codeScannerView);
+        codeScanner.setDecodeCallback(new DecodeCallback() {
             @Override
-            public void surfaceCreated(@NonNull SurfaceHolder holder) {
-                try {
-                    if (ActivityCompat.checkSelfPermission(ScannerActivity.this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED)
-                        cameraSource.start(surfaceView.getHolder());
-                    else
-                        ActivityCompat.requestPermissions(ScannerActivity.this, new String[]{Manifest.permission.CAMERA}, REQUEST_CAMERA_PERMISSION);
-                } catch (IOException e){
-                    e.printStackTrace();
-                }
-            }
-
-            @Override
-            public void surfaceChanged(@NonNull SurfaceHolder holder, int format, int width, int height) {
-            }
-
-            @Override
-            public void surfaceDestroyed(@NonNull SurfaceHolder holder) {
-                cameraSource.stop();
-                cameraSource.release();
+            public void onDecoded(@NonNull Result result) {
+                runOnUiThread(() -> {
+                    if (result.getText().equals(strQRFlag.getValue())){
+                        Log.e("Code right","");
+                        SharedPreferences.Editor editor = preferenceLoader().edit();
+                        editor.putBoolean(trainingKey.getValue(), !trainingStatus);
+                        editor.apply();
+                        registerEvent();
+                        qrCodeDispatcher();
+                    }
+                });
             }
         });
-        barcodeDetector.setProcessor(new Detector.Processor<Barcode>() {
-            @Override
-            public void release() {
-            }
-
-            @Override
-            public void receiveDetections(@NonNull Detector.Detections<Barcode> detections) {
-                SparseArray<Barcode> qrCodes = detections.getDetectedItems();
-                Log.e("Code found","");
-                if (qrCodes.size()!=0 && qrCodes.valueAt(0).displayValue.equals(strQRFlag.getValue())) {
-                    Log.e("Code right","");
-                    SharedPreferences.Editor editor = preferenceLoader().edit();
-                    editor.putBoolean(trainingKey.getValue(), !trainingStatus);
-                    editor.apply();
-                    registerEvent();
-                    qrCodeDispatcher();
-                }
-            }
+        codeScannerView.setOnClickListener(v -> {
+            codeScanner.startPreview();
         });
     }
+
+
 
     private void qrCodeDispatcher() {
         preferenceSaver();
-        cameraSource.stop();
-        cameraSource.release();
-        barcodeDetector.release();
+        codeScanner.stopPreview();
+        codeScanner.releaseResources();
     }
 
     private void registerEvent() {
