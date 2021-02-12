@@ -11,6 +11,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.SparseArray;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -131,7 +132,9 @@ public class ScannerActivity extends AppCompatActivity {
             @Override
             public void receiveDetections(@NonNull Detector.Detections<Barcode> detections) {
                 SparseArray<Barcode> qrCodes = detections.getDetectedItems();
+                Log.e("Code found","");
                 if (qrCodes.size()!=0 && qrCodes.valueAt(0).displayValue.equals(strQRFlag.getValue())) {
+                    Log.e("Code right","");
                     SharedPreferences.Editor editor = preferenceLoader().edit();
                     editor.putBoolean(trainingKey.getValue(), !trainingStatus);
                     editor.apply();
