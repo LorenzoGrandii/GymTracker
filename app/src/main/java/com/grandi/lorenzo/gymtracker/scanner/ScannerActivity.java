@@ -97,7 +97,9 @@ public class ScannerActivity extends AppCompatActivity {
 
     private void initViewComponents() {
         this.tv_date_scanner = this.findViewById(R.id.tv_date_scanner);
+        Log.e("date_scanner","created");
         codeScannerView = findViewById(R.id.previewView);
+        Log.e("previewView","created");
     }
     private void initTaskComponents() {
         this.context = this;
@@ -106,21 +108,18 @@ public class ScannerActivity extends AppCompatActivity {
         // this.cameraManager();
 
         codeScanner = new CodeScanner(this, codeScannerView);
-        codeScanner.setDecodeCallback(new DecodeCallback() {
-            @Override
-            public void onDecoded(@NonNull Result result) {
-                runOnUiThread(() -> {
-                    if (result.getText().equals(strQRFlag.getValue())){
-                        Log.e("Code right","");
-                        SharedPreferences.Editor editor = preferenceLoader().edit();
-                        editor.putBoolean(trainingKey.getValue(), !trainingStatus);
-                        editor.apply();
-                        registerEvent();
-                        qrCodeDispatcher();
-                    }
-                });
+        Log.e("codeScanner","created");
+        codeScanner.setDecodeCallback(result -> runOnUiThread(() -> {
+            Log.e("callback","set");
+            if (result.getText().equals(strQRFlag.getValue())){
+                Log.e("Code right","");
+                SharedPreferences.Editor editor = preferenceLoader().edit();
+                editor.putBoolean(trainingKey.getValue(), !trainingStatus);
+                editor.apply();
+                registerEvent();
+                qrCodeDispatcher();
             }
-        });
+        }));
         codeScannerView.setOnClickListener(v -> {
             codeScanner.startPreview();
         });
