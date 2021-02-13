@@ -119,8 +119,7 @@ public class HomeActivity extends FragmentActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         IntentResult intentResult = IntentIntegrator.parseActivityResult(requestCode,resultCode,data);
-        if (intentResult.getContents() != null) {
-            Toast.makeText(this, intentResult.getContents(), Toast.LENGTH_SHORT).show();
+        if (intentResult.getContents() != null && intentResult.getContents().equalsIgnoreCase("qrcode")) {
             SharedPreferences.Editor editor = preferenceLoaderLogin().edit();
             this.training = switchTrainingStatus(this.training);
             editor.putBoolean(trainingKey.getValue(), this.training);
