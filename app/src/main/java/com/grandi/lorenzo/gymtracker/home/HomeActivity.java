@@ -123,6 +123,7 @@ public class HomeActivity extends FragmentActivity {
             Toast.makeText(this, intentResult.getContents(), Toast.LENGTH_SHORT).show();
             SharedPreferences.Editor editor = preferenceLoaderLogin().edit();
             this.training = switchTrainingStatus(this.training);
+            this.trainingStatus(preferenceLoaderLogin().getBoolean(trainingKey.getValue(), false));
             editor.putBoolean(trainingKey.getValue(), this.training);
             editor.apply();
             registerEvent();
