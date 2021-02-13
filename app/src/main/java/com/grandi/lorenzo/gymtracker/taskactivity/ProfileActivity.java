@@ -1,6 +1,8 @@
 package com.grandi.lorenzo.gymtracker.taskactivity;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.Manifest;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.hardware.Sensor;
@@ -16,6 +18,7 @@ import android.widget.TextView;
 
 import com.grandi.lorenzo.gymtracker.R;
 import com.grandi.lorenzo.gymtracker.task.CalendarHandler;
+import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -41,6 +44,12 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
+        final RxPermissions rxPermissions = new RxPermissions(this);
+        new RxPermissions(this).request(Manifest.permission.ACTIVITY_RECOGNITION)
+                .subscribe(granted ->{
+                    if(granted)
+                        Log.d("TAG", "Is ACTIVITY_RECOGNITION permission granted: $isGranted");
+                });
         initViewComponents();
         initTaskComponents();
     }
