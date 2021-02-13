@@ -1,4 +1,4 @@
-package com.grandi.lorenzo.gymtracker;
+package com.grandi.lorenzo.gymtracker.globalClasses;
 
 public enum KeyLoader {
     /*===================================== PREFERENCE KEYS ======================================*/

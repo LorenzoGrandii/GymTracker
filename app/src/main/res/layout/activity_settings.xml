@@ -163,7 +163,7 @@
         </LinearLayout>
     </RelativeLayout>
     <fragment android:id="@+id/copyright_light"
-        android:name="com.grandi.lorenzo.gymtracker.FragmentCopyrightLight"
+        android:name="com.grandi.lorenzo.gymtracker.globalClasses.FragmentCopyrightLight"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true" />

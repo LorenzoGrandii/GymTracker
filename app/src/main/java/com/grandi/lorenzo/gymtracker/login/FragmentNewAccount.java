@@ -16,19 +16,17 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
 import com.google.android.material.textfield.TextInputLayout;
-import com.grandi.lorenzo.gymtracker.FlagList;
+import com.grandi.lorenzo.gymtracker.globalClasses.FlagList;
 import com.grandi.lorenzo.gymtracker.R;
 import com.grandi.lorenzo.gymtracker.home.HomeActivity;
-import com.grandi.lorenzo.gymtracker.task.CalendarHandler;
 
-import java.io.FileOutputStream;
 import java.util.Objects;
 
-import static com.grandi.lorenzo.gymtracker.KeyLoader.LOGIN_PREFERENCE_FILE;
-import static com.grandi.lorenzo.gymtracker.KeyLoader.emailKey;
-import static com.grandi.lorenzo.gymtracker.KeyLoader.loggedKey;
-import static com.grandi.lorenzo.gymtracker.KeyLoader.nameKey;
-import static com.grandi.lorenzo.gymtracker.KeyLoader.passwordKey;
+import static com.grandi.lorenzo.gymtracker.globalClasses.KeyLoader.LOGIN_PREFERENCE_FILE;
+import static com.grandi.lorenzo.gymtracker.globalClasses.KeyLoader.emailKey;
+import static com.grandi.lorenzo.gymtracker.globalClasses.KeyLoader.loggedKey;
+import static com.grandi.lorenzo.gymtracker.globalClasses.KeyLoader.nameKey;
+import static com.grandi.lorenzo.gymtracker.globalClasses.KeyLoader.passwordKey;
 
 public class FragmentNewAccount extends Fragment {
     private TextInputLayout til_email, til_name, til_password;

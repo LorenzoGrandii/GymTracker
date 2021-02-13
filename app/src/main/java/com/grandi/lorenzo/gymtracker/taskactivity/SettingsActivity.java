@@ -15,14 +15,14 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.grandi.lorenzo.gymtracker.FlagList;
+import com.grandi.lorenzo.gymtracker.globalClasses.FlagList;
 import com.grandi.lorenzo.gymtracker.R;
 import com.grandi.lorenzo.gymtracker.home.HomeActivity;
 import com.grandi.lorenzo.gymtracker.main.StarterActivity;
 
 import java.io.File;
 
-import static com.grandi.lorenzo.gymtracker.KeyLoader.*;
+import static com.grandi.lorenzo.gymtracker.globalClasses.KeyLoader.*;
 
 @RequiresApi(api = Build.VERSION_CODES.M)
 public class SettingsActivity extends AppCompatActivity {

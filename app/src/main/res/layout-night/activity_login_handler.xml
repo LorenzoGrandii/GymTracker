@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
     <fragment android:id="@+id/copyright"
-        android:name="com.grandi.lorenzo.gymtracker.FragmentCopyright"
+        android:name="com.grandi.lorenzo.gymtracker.globalClasses.FragmentCopyright"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"/>

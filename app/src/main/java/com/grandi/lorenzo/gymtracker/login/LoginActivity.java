@@ -8,11 +8,8 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.grandi.lorenzo.gymtracker.R;
-import com.grandi.lorenzo.gymtracker.task.CalendarHandler;
 
-import java.io.FileOutputStream;
-
-import static com.grandi.lorenzo.gymtracker.KeyLoader.*;
+import static com.grandi.lorenzo.gymtracker.globalClasses.KeyLoader.*;
 
 public class LoginActivity extends AppCompatActivity {
 

@@ -16,13 +16,13 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
 import com.google.android.material.textfield.TextInputLayout;
-import com.grandi.lorenzo.gymtracker.FlagList;
+import com.grandi.lorenzo.gymtracker.globalClasses.FlagList;
 import com.grandi.lorenzo.gymtracker.home.HomeActivity;
 import com.grandi.lorenzo.gymtracker.R;
 
 import java.util.Objects;
 
-import static com.grandi.lorenzo.gymtracker.KeyLoader.*;
+import static com.grandi.lorenzo.gymtracker.globalClasses.KeyLoader.*;
 
 public class FragmentLogin extends Fragment {
 

@@ -14,11 +14,11 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.grandi.lorenzo.gymtracker.FlagList;
+import com.grandi.lorenzo.gymtracker.globalClasses.FlagList;
 import com.grandi.lorenzo.gymtracker.R;
 import com.grandi.lorenzo.gymtracker.login.LoginActivity;
 
-import static com.grandi.lorenzo.gymtracker.KeyLoader.*;
+import static com.grandi.lorenzo.gymtracker.globalClasses.KeyLoader.*;
 
 @RequiresApi(api = Build.VERSION_CODES.M)
 public class StarterActivity extends AppCompatActivity {

@@ -1,4 +1,4 @@
-package com.grandi.lorenzo.gymtracker;
+package com.grandi.lorenzo.gymtracker.scanner;
 
 import androidx.appcompat.app.AppCompatActivity;
 

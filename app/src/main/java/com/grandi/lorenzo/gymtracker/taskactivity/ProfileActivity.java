@@ -19,11 +19,13 @@ import com.grandi.lorenzo.gymtracker.task.CalendarHandler;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 
-import static com.grandi.lorenzo.gymtracker.KeyLoader.*;
+import static com.grandi.lorenzo.gymtracker.globalClasses.KeyLoader.*;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -137,30 +139,24 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private String readSavesAtOpen() {
-        String registrations;
+        String registrations = "";
         try {
-            FileInputStream registrationStream = this.openFileInput(this.getFilesDir().getName().concat(REGISTRATION_FILE.getValue()));
-            InputStreamReader inputStreamReader = new InputStreamReader(registrationStream, StandardCharsets.UTF_8);
-            StringBuilder stringBuilder = new StringBuilder();
-            try (BufferedReader reader = new BufferedReader(inputStreamReader)){
-                String line = reader.readLine();
-                while (line != null) {
-                    stringBuilder.append(line);
-                    line = reader.readLine();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            } finally {
-                registrations = stringBuilder.toString();
+            InputStream registrationStream = this.openFileInput(this.getFilesDir().getName().concat(REGISTRATION_FILE.getValue()));
+            if (registrationStream != null) {
+                InputStreamReader inputStreamReader = new InputStreamReader(registrationStream);
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                String receiveString = "";
+                StringBuilder stringBuilder = new StringBuilder();
+                while ((receiveString = bufferedReader.readLine()) != null)
+                    stringBuilder.append("\n").append(receiveString);
                 registrationStream.close();
-                inputStreamReader.close();
+                registrations = stringBuilder.toString();
             }
-            return registrations;
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
-            Log.e("Failed loading files", "!!!");
+            Log.e("Failed loading files", "File error");
         }
-        return "";
+        return registrations;
     }
     private void svFileReader() {
         String registrations = readSavesAtOpen();

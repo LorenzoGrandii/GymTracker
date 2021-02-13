@@ -17,8 +17,8 @@ import androidx.fragment.app.FragmentActivity;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
-import com.grandi.lorenzo.gymtracker.CaptureActivity;
-import com.grandi.lorenzo.gymtracker.FlagList;
+import com.grandi.lorenzo.gymtracker.scanner.CaptureActivity;
+import com.grandi.lorenzo.gymtracker.globalClasses.FlagList;
 import com.grandi.lorenzo.gymtracker.R;
 import com.grandi.lorenzo.gymtracker.main.StarterActivity;
 import com.grandi.lorenzo.gymtracker.taskactivity.SettingsActivity;
@@ -26,8 +26,10 @@ import com.grandi.lorenzo.gymtracker.taskactivity.ProfileActivity;
 import com.grandi.lorenzo.gymtracker.task.CalendarHandler;
 
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 
-import static com.grandi.lorenzo.gymtracker.KeyLoader.*;
+import static com.grandi.lorenzo.gymtracker.globalClasses.KeyLoader.*;
 
 public class HomeActivity extends FragmentActivity {
 
@@ -94,10 +96,6 @@ public class HomeActivity extends FragmentActivity {
             preferenceSaver(this);
             this.ib_scanner.setPressed(true);
 
-            //Intent intent = new Intent(this, ScannerActivity.class);
-            //new FlagList(intent);
-            //startActivity(intent);
-
             IntentIntegrator intentIntegrator = new IntentIntegrator(HomeActivity.this);
             intentIntegrator.setPrompt("For flash use volume up key");
             intentIntegrator.setBeepEnabled(true);
@@ -120,8 +118,8 @@ public class HomeActivity extends FragmentActivity {
         super.onActivityResult(requestCode, resultCode, data);
         IntentResult intentResult = IntentIntegrator.parseActivityResult(requestCode,resultCode,data);
         if (intentResult.getContents() != null && intentResult.getContents().equalsIgnoreCase("qrcode")) {
-            Toast.makeText(this, intentResult.getContents(), Toast.LENGTH_SHORT).show();
             SharedPreferences.Editor editor = preferenceLoaderLogin().edit();
+
             this.training = switchTrainingStatus(this.training);
             this.trainingStatus(preferenceLoaderLogin().getBoolean(trainingKey.getValue(), false));
             editor.putBoolean(trainingKey.getValue(), this.training);
@@ -137,13 +135,13 @@ public class HomeActivity extends FragmentActivity {
         String name, date, registration;
         name = preferenceLoaderLogin().getString(nameKey.getValue(), nameKey.getValue());
         date = new CalendarHandler().getDateComplete();
-        if (training) registration = " > " + name + " left the gym :\t" + date + "\n";
+        if (this.training) registration = " > " + name + " left the gym :\t" + date + "\n";
         else registration = " > " + name + " joined the gym :\t" + date + "\n";
         try {
-            FileOutputStream eventRegister = openFileOutput(this.getFilesDir().getName().concat(REGISTRATION_FILE.getValue()), Context.MODE_PRIVATE);
-            eventRegister.write(registration.getBytes());
+            OutputStreamWriter eventRegister = new OutputStreamWriter(this.openFileOutput(REGISTRATION_FILE.getValue(), Context.MODE_PRIVATE));
+            eventRegister.write(registration);
             eventRegister.close();
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

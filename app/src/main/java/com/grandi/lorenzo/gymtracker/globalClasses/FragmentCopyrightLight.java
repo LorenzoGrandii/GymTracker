@@ -1,4 +1,4 @@
-package com.grandi.lorenzo.gymtracker;
+package com.grandi.lorenzo.gymtracker.globalClasses;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import com.grandi.lorenzo.gymtracker.R;
 
 public class FragmentCopyrightLight extends Fragment {
     @Nullable
