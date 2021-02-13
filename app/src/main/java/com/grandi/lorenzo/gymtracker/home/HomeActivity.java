@@ -26,6 +26,7 @@ import com.grandi.lorenzo.gymtracker.taskactivity.ProfileActivity;
 import com.grandi.lorenzo.gymtracker.task.CalendarHandler;
 
 import java.io.FileOutputStream;
+import java.util.Arrays;
 
 import static com.grandi.lorenzo.gymtracker.KeyLoader.*;
 
@@ -119,14 +120,19 @@ public class HomeActivity extends FragmentActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         IntentResult intentResult = IntentIntegrator.parseActivityResult(requestCode,resultCode,data);
-        if (intentResult.getContents() != null && intentResult.getContents().equals(strQRFlag.getValue())) {
-            SharedPreferences.Editor editor = preferenceLoaderLogin().edit();
-            this.training = switchTrainingStatus(this.training);
-            editor.putBoolean(trainingKey.getValue(), this.training);
-            editor.apply();
-            registerEvent();
+        if (intentResult.getContents() != null) {
+            if (Arrays.equals(intentResult.getContents().toCharArray(), strQRFlag.getValue().toCharArray())) {
+                SharedPreferences.Editor editor = preferenceLoaderLogin().edit();
+                this.training = switchTrainingStatus(this.training);
+                editor.putBoolean(trainingKey.getValue(), this.training);
+                editor.apply();
+                registerEvent();
+            } else {
+                Toast.makeText(this, R.string.no_scan_detected, Toast.LENGTH_SHORT).show();
+                setResult(Activity.RESULT_CANCELED);
+            }
         } else {
-            Toast.makeText(this, R.string.no_scan_detected, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.scan_code, Toast.LENGTH_SHORT).show();
             setResult(Activity.RESULT_CANCELED);
         }
     }
