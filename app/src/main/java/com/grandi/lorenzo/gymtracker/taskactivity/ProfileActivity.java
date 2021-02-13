@@ -150,7 +150,7 @@ public class ProfileActivity extends AppCompatActivity {
     private String readSavesAtOpen() {
         String registrations = "";
         try {
-            InputStream registrationStream = this.openFileInput(this.getFilesDir().getName().concat(REGISTRATION_FILE.getValue()));
+            InputStream registrationStream = this.openFileInput(REGISTRATION_FILE.getValue());
             if (registrationStream != null) {
                 InputStreamReader inputStreamReader = new InputStreamReader(registrationStream);
                 BufferedReader bufferedReader = new BufferedReader(inputStreamReader);

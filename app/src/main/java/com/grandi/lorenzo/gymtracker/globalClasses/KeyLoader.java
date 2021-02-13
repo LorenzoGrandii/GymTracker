@@ -14,10 +14,7 @@ public enum KeyLoader {
     humidityKey ("humidityKey"),
 
     /*======================================= FILE STRINGS =======================================*/
-    REGISTRATION_FILE ("userRegistrations.txt"),
-
-    /*====================================== QRCODE STRINGS ======================================*/
-    strQRFlag ("gymtracker"),
+    REGISTRATION_FILE ("userRegistrations"),
 
     /*======================================= EXTRAS KEYS ========================================*/
     EXTRA_ACCOUNT ("com.grandi.lorenzo.gymtracker.ACCOUNT");

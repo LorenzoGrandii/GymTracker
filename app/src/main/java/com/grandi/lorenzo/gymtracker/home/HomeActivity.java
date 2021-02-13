@@ -25,7 +25,6 @@ import com.grandi.lorenzo.gymtracker.taskactivity.SettingsActivity;
 import com.grandi.lorenzo.gymtracker.taskactivity.ProfileActivity;
 import com.grandi.lorenzo.gymtracker.task.CalendarHandler;
 
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 
