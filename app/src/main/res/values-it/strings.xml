@@ -45,4 +45,5 @@
     <string name="no_registrations">No registrations found</string>
     <string name="button">button</string>
     <string name="file_read">I tuoi ingressi</string>
+    <string name="no_scan_detected">Nessun QRCode trovato</string>
 </resources>
