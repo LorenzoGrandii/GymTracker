@@ -46,5 +46,4 @@
     <string name="button">button</string>
     <string name="file_read">I tuoi ingressi</string>
     <string name="no_scan_detected">Nessun QRCode trovato</string>
-    <string name="scan_code">Scan a QRCode</string>
 </resources>
