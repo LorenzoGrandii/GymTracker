@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,6 +26,8 @@ import com.grandi.lorenzo.gymtracker.taskactivity.SettingsActivity;
 import com.grandi.lorenzo.gymtracker.taskactivity.ProfileActivity;
 import com.grandi.lorenzo.gymtracker.task.CalendarHandler;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 
@@ -126,7 +129,7 @@ public class HomeActivity extends FragmentActivity {
             registerEvent();
         } else {
             Toast.makeText(this, R.string.no_scan_detected, Toast.LENGTH_SHORT).show();
-            setResult(Activity.RESULT_CANCELED);
+            setResult(Activity.RESULT_CANCELED); // !! Se non si attende la fine dell'inizializzazione crasha
         }
     }
 
@@ -137,11 +140,11 @@ public class HomeActivity extends FragmentActivity {
         if (this.training) registration = " > " + name + " left the gym :\t" + date + "\n";
         else registration = " > " + name + " joined the gym :\t" + date + "\n";
         try {
-            OutputStreamWriter eventRegister = new OutputStreamWriter(this.openFileOutput(REGISTRATION_FILE.getValue(), Context.MODE_PRIVATE));
-            eventRegister.write(registration);
-            eventRegister.close();
+            FileWriter out = new FileWriter(new File(this.getFilesDir(), REGISTRATION_FILE.getValue()));
+            out.write(registration);
+            out.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            Log.e("IOException", String.valueOf(e));
         }
     }
 

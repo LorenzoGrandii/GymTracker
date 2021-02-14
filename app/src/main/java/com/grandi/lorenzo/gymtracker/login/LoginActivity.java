@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.grandi.lorenzo.gymtracker.R;
+import com.grandi.lorenzo.gymtracker.globalClasses.FlagList;
+import com.grandi.lorenzo.gymtracker.main.StarterActivity;
 
 import static com.grandi.lorenzo.gymtracker.globalClasses.KeyLoader.*;
 
@@ -29,5 +31,13 @@ public class LoginActivity extends AppCompatActivity {
             ft.replace(R.id.f_login_container, new FragmentNewAccount());
             ft.commit();
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(this, StarterActivity.class);
+        new FlagList(intent);
+        startActivity(intent);
     }
 }

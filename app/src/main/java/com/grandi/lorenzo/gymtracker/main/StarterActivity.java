@@ -80,6 +80,12 @@ public class StarterActivity extends AppCompatActivity {
     }
 
     @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finishAffinity();
+    }
+
+    @Override
     protected void onStop() {
         super.onStop();
     }

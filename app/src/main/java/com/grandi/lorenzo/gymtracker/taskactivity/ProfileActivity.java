@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -17,16 +18,20 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.grandi.lorenzo.gymtracker.R;
+import com.grandi.lorenzo.gymtracker.globalClasses.FlagList;
+import com.grandi.lorenzo.gymtracker.home.HomeActivity;
 import com.grandi.lorenzo.gymtracker.task.CalendarHandler;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
 
 import static com.grandi.lorenzo.gymtracker.globalClasses.KeyLoader.*;
 
@@ -44,12 +49,6 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        final RxPermissions rxPermissions = new RxPermissions(this);
-        new RxPermissions(this).request(Manifest.permission.ACTIVITY_RECOGNITION)
-                .subscribe(granted ->{
-                    if(granted)
-                        Log.d("TAG", "Is ACTIVITY_RECOGNITION permission granted: $isGranted");
-                });
         initViewComponents();
         initTaskComponents();
     }
@@ -58,6 +57,16 @@ public class ProfileActivity extends AppCompatActivity {
         super.onPause();
         sensorManager.unregisterListener(this.sensorEventListener);
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        sensorManager.unregisterListener(this.sensorEventListener);
+        Intent intent = new Intent(this, HomeActivity.class);
+        new FlagList(intent);
+        startActivity(intent);
+    }
+
     @Override
     protected void onResume(){
         super.onResume();
@@ -98,6 +107,13 @@ public class ProfileActivity extends AppCompatActivity {
         this.is_temperature_enabled = preferenceLoader().getBoolean(temperatureKey.getValue(), false);
         this.is_step_counter_enabled = preferenceLoader().getBoolean(stepCounterKey.getValue(), false);
         this.is_humidity_enabled = preferenceLoader().getBoolean(humidityKey.getValue(), false);
+
+        final RxPermissions rxPermissions = new RxPermissions(this);
+        new RxPermissions(this).request(Manifest.permission.ACTIVITY_RECOGNITION)
+                .subscribe(granted ->{
+                    if(granted)
+                        Log.d("TAG", "Is ACTIVITY_RECOGNITION permission granted: $isGranted");
+                });
 
         this.sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 
@@ -148,24 +164,21 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private String readSavesAtOpen() {
-        String registrations = "";
+        StringBuilder stringBuilder = new StringBuilder();
+        String line;
+        BufferedReader in = null;
+
         try {
-            InputStream registrationStream = this.openFileInput(REGISTRATION_FILE.getValue());
-            if (registrationStream != null) {
-                InputStreamReader inputStreamReader = new InputStreamReader(registrationStream);
-                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-                String receiveString = "";
-                StringBuilder stringBuilder = new StringBuilder();
-                while ((receiveString = bufferedReader.readLine()) != null)
-                    stringBuilder.append("\n").append(receiveString);
-                registrationStream.close();
-                registrations = stringBuilder.toString();
-            }
+            in = new BufferedReader(new FileReader(new File(this.getFilesDir(), REGISTRATION_FILE.getValue())));
+            while ((line = in.readLine()) != null) stringBuilder.append(line);
+
+        } catch (FileNotFoundException e) {
+            Log.e("FileNotFound", String.valueOf(e));
         } catch (IOException e) {
-            e.printStackTrace();
-            Log.e("Failed loading files", "File error");
+            Log.e("IOException", String.valueOf(e));
         }
-        return registrations;
+
+        return stringBuilder.toString();
     }
     private void svFileReader() {
         String registrations = readSavesAtOpen();
